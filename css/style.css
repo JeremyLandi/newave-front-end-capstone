@@ -1,0 +1,227 @@
+body {
+  padding: 0;
+  margin: 0; 
+  color: #111;
+}
+.hide {
+  display: none;
+}
+input {
+  min-width: 200px;
+}
+img {
+  height: 400px;
+  width: 100%;
+  margin: 5px 0;
+}
+p {
+  margin: 10px;
+  font-size: 1.3em;
+}
+nav {
+  background-color: rgba( 135, 206, 250, .7);
+  padding: 25px; 
+  box-shadow: 0px 0px 10px gray;
+
+}
+nav ul li {
+  display: inline;
+  list-style-type: none;
+  padding: 10px;
+  margin: -5px; 
+  border-radius: 10px;
+}
+.loginButton {
+  float: right;
+}
+.movieList {
+  padding-bottom: 5px;
+  width: 25%;
+}
+.movieList button {
+  border:outset gray 1px;
+}
+
+.movieList button:hover {
+  border:inset gray 1px;
+  background-color: #ffff66;
+}
+.btn-primary {
+  margin-right:5%;
+}
+
+/**********
+MAIN SECTION
+**********/
+.panel-order .row {
+    border-bottom: 1px solid #ccc;
+}
+
+.panel-order .row:last-child {
+    border: 0px;
+}
+
+.panel-order .row .col-md-1 {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.panel-order .row .col-md-1 img {
+    width: 50px;
+    max-height: 50px;
+}
+
+.panel-order .row .row {
+    border-bottom: 0;
+}
+
+.panel-order .row .col-md-11 {
+    border-left: 1px solid #ccc;
+}
+
+.panel-order .row .row .col-md-12 {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.panel-order .row .row .col-md-12:last-child {
+    font-size: 11px;
+    color: #555;
+    background: #efefef;
+}
+
+.panel-order .btn-group {
+    margin: 0px;
+    padding: 0px;
+}
+
+.panel-order .panel-body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.panel-order .panel-deading {
+    margin-bottom: 0;
+}
+
+
+
+/**********
+LOGGIN
+**********/
+.signIn {
+  padding-bottom: 50px;
+  width: 500px;
+  background-color: rgba(155,155,155,.3);
+  color: #444;
+  margin: 5% auto;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 10px #31b0d5;
+
+}
+.signUp {
+  padding-top: 10px;
+}
+.password {
+  margin-bottom: 20px;  
+}
+.signUpLink {
+  color: #31B0D5;
+}
+.logout {
+  margin-left: 120px;
+}
+.main {
+  max-width: 320px;
+  margin: 0 auto;
+}
+.login-or {
+  position: relative;
+  font-size: 18px;
+  color: #aaa;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.span-or {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  margin-left: -25px;
+  background-color: #fff;
+  width: 50px;
+  text-align: center;
+}
+.hr-or {
+  background-color: #cdcdcd;
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+h3 {
+  text-align: center;
+  line-height: 300%;
+}
+
+/**********
+LOGGIN
+**********/
+.signIn {
+  padding-bottom: 50px;
+  width: 500px;
+  background-color: rgba(155,155,155,.3);
+  color: #444;
+  margin: 5% auto;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 10px #31b0d5;
+
+}
+.signUp {
+  padding-top: 10px;
+}
+.password {
+  margin-bottom: 20px;  
+}
+.signUpLink {
+  color: #31B0D5;
+}
+.logout {
+  margin-left: 120px;
+}
+.main {
+  max-width: 320px;
+  margin: 0 auto;
+}
+.login-or {
+  position: relative;
+  font-size: 18px;
+  color: #aaa;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.span-or {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  margin-left: -25px;
+  background-color: #fff;
+  width: 50px;
+  text-align: center;
+}
+.hr-or {
+  background-color: #cdcdcd;
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+h3 {
+  text-align: center;
+  line-height: 300%;
+}

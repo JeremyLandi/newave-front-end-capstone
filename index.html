@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Newave</title>
+
+		<!-- <link rel="stylesheet" href="lib/bower_components/angular-material/angular-material.css"> -->
+		<!-- <link rel="stylesheet" href="lib/bower_components/mdi/css/materialdesignicons.min.css" media="all" type="text/css"> -->
+		<link rel="stylesheet" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">    
+</head>
+
+<body ng-app="NewaveApp">
+
+	<div ng-controller="NavCtrl">
+	  <div ng-include="'components/nav.html'"></div>
+	</div>
+	
+
+	<div ng-view></div>
+
+	<!-- JQuery Library -->     
+	<script src="lib/bower_components/angular/angular.min.js"></script>
+  <script src="lib/bower_components/angular-route/angular-route.min.js"></script>
+  <script src="lib/bower_components/firebase/firebase.js"></script>
+  <script src="lib/bower_components/angularfire/dist/angularfire.min.js"></script>
+
+  <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- <script src="lib/bower_components/jquery/dist/jquery.min.js"></script> -->
+	<!-- <script src="lib/bower_components/angular-aria/angular-aria.js"></script> -->
+	<!-- <script src="lib/bower_components/angular-animate/angular-animate.min.js"></script> -->
+	<!-- <script src="lib/bower_components/angular-material/angular-material.js"></script> -->
+	<!-- <script src="lib/bower_components/Materialize/dist/js/materialize.min.js"></script> -->
+
+	<script src="router/app.js"></script> 
+	<script src="components/applicant/applicant.Fact.js"></script>  
+	<script src="components/employer/employer.Fact.js"></script>  
+	<script src="components/nav.Ctrl.js"></script>  
+	<script src="components/newave.Ctrl.js"></script> 
+	<script src="components/applicant/applicantLogin.Ctrl.js"></script> 
+	<script src="components/employer/employerLogin.Ctrl.js"></script> 
+
+	
+</body>
+</html>

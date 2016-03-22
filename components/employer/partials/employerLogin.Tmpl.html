@@ -1,0 +1,22 @@
+<div class="signIn" ng-if="!signup">	
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Login to your Business account</h2>
+		</div>
+	</div>
+
+	<div class="row signUp">
+	  <div class="main">
+	    <label>Email</label>
+	    <input type="email" class="form-control" autofocus placeholder="email address" ng-model="employer.email">
+	    <br>
+	    <label>Password</label>
+	    <input type="password" class="form-control password" ng-model="employer.password" placeholder="password">
+	    <button type="submit" class="btn btn btn-primary" ng-click="login(employer)">Log In
+	    </button>
+	    <a href="#/employerSignUp"><button type="submit" class="btn btn btn-primary" ng-click="signupToggle()">
+	    Create Profile
+	    </button></a>
+		</div>
+	</div>
+</div>	
