@@ -13,7 +13,7 @@
 <body ng-app="NewaveApp">
 
 	<div ng-controller="NavCtrl">
-	  <div ng-include="'components/nav.html'"></div>
+	  <div ng-include="'components/nav/nav.html'"></div>
 	</div>
 	
 
@@ -34,12 +34,17 @@
 	<!-- <script src="lib/bower_components/Materialize/dist/js/materialize.min.js"></script> -->
 
 	<script src="router/app.js"></script> 
-	<script src="components/applicant/applicant.Fact.js"></script>  
-	<script src="components/employer/employer.Fact.js"></script>  
-	<script src="components/nav.Ctrl.js"></script>  
+	<script src="components/AuthFactory.js"></script>  
+	<script src="components/JobFactory.js"></script>  
+	<script src="components/ProfileFactory.js"></script>  
 	<script src="components/newave.Ctrl.js"></script> 
+	<script src="components/nav/nav.Ctrl.js"></script>  
 	<script src="components/applicant/applicantLogin.Ctrl.js"></script> 
 	<script src="components/employer/employerLogin.Ctrl.js"></script> 
+	<script src="components/employer/employerMain.Ctrl.js"></script> 
+	<script src="components/employer/employerPost.Ctrl.js"></script> 
+	<script src="components/employer/managePost.Ctrl.js"></script> 
+	<script src="components/employer/manageProfile.Ctrl.js"></script> 
 
 	
 </body>

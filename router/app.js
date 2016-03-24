@@ -35,9 +35,21 @@ Newave.config(["$routeProvider",
         templateUrl: "components/employer/partials/employerSignUp.Tmpl.html",
         controller: "EmployerLoginCtrl"
       }).
+      when("/employer", {
+        templateUrl: "components/employer/partials/employerMain.Tmpl.html",
+        controller: "EmployerMainCtrl"
+      }).
       when("/newPost", {
-        templateUrl: "components/employer/partials/employerPost.html",
-        controller: "EmployerLoginCtrl"
+        templateUrl: "components/employer/partials/employerPost.Tmpl.html",
+        controller: "EmployerPostCtrl"
+      }).
+      when("/managePost/:postID", {
+        templateUrl: "components/employer/partials/managePost.Tmpl.html",
+        controller: "ManagePostCtrl"
+      }).      
+      when("/manageProfile", {
+        templateUrl: "components/employer/partials/manageProfile.Tmpl.html",
+        controller: "ManageProfileCtrl"
       }).
 			otherwise({
         redirectTo: "/"

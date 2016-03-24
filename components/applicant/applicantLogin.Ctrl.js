@@ -2,10 +2,10 @@
 
 Newave.controller("ApplicantLoginCtrl", [
 	"$scope",
-	"authenticateUser",
+	"authenticate",
   "$location",
 
-	function($scope, AuthenticateUser, $location) {
+	function($scope, authenticate, $location) {
 
 		$scope.displayLogin = true;
 		$scope.displayLogout = false;
@@ -14,6 +14,7 @@ Newave.controller("ApplicantLoginCtrl", [
 			firstName: "",
 			lastName: "",
 			email: "",
+			number: "",
 			password: "",
 			currentEmpl: "",
 			jobTitle: "",
@@ -28,12 +29,12 @@ Newave.controller("ApplicantLoginCtrl", [
 			const email = user.email;
 			const password = user.password;		
 			console.log("user", user);
-			AuthenticateUser.createUser(email, password)
+			authenticate.createUser(email, password)
 			.then(
-				() => AuthenticateUser.loginUser(user.email, user.password),
+				() => authenticate.loginUser(user.email, user.password),
 				(error) => console.log("could not register user")
 			).then(
-				() => { AuthenticateUser.createUserProfile(user), 
+				() => { authenticate.createApplicantProfile(user), 
 					$location.path('/');
 				console.log("successfully registered")
 			},
@@ -42,7 +43,7 @@ Newave.controller("ApplicantLoginCtrl", [
 		}
 		
 		$scope.login = function(user) {
-			AuthenticateUser.loginUser(user.email, user.password)
+			authenticate.loginUser(user.email, user.password)
 			.then(
 				() => {
 					$scope.displayLogin = false;

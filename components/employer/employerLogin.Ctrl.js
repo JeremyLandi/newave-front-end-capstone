@@ -10,7 +10,6 @@ Newave.controller("EmployerLoginCtrl", [
 		$scope.displayLogin = true;
 		$scope.displayLogout = false;
 		
-console.log("$scope.displayLogin", $scope.displayLogin);
 		$scope.employer = {
 			firstName: "",
 			lastName: "",
@@ -18,7 +17,8 @@ console.log("$scope.displayLogin", $scope.displayLogin);
 			password: "",
 			name: "",
 			description: "",
-			location: ""
+			location: "",
+			isEmployer: true
 		};
 
 		$scope.register = function(employer) {
@@ -31,7 +31,7 @@ console.log("$scope.displayLogin", $scope.displayLogin);
 				(error) => console.log("could not register employer")
 			).then(
 				() => { Authenticate.createEmployerProfile(employer), 
-					$location.path('/');	
+					$location.path('/employer');	
 					$scope.displayLogin = false;
 					$scope.displayLogout = true;
 					console.log("successfully registered")
@@ -44,7 +44,7 @@ console.log("$scope.displayLogin", $scope.displayLogin);
 			Authenticate.loginUser(employer.email, employer.password)
 			.then(
 				() => {
-					$location.path('/');		
+					$location.path('/employer');		
 					$scope.displayLogin = false;
 					$scope.displayLogout = true;
 					console.log("successfully logged in");
