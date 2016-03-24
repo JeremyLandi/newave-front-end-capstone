@@ -1,0 +1,48 @@
+<div class="container" style="padding-top: 30px;">
+      <div> 
+        <!--  <button ng-click="search()"></button> -->
+        <a href="/#/newPost">Post Job</a>
+        <a href="/#/manageProfile">| Edit Profile</a>
+        <a href="/#/managePost:postID" >| Manage Posts</a>      
+      </div>
+  <div class="panel panel-default panel-order">
+    <div class="panel-heading">
+      <strong>Current Job Postings for {{companyName}} in Nashville, TN </strong>
+    </div>
+    <div class="panel-body" ng-repeat="job in jobs track by $index">
+      <div class="row">       
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">              
+              <span><strong>{{job.jobTitle}}</strong></span>
+              <!-- <span class="label label-info pull-right">Add to Fav</span> -->
+              <br>
+              <span>{{job.location}}</span>
+              <br>
+              <p>Description: {{job.description}}</p>
+              <a href="/#/showApplicant"><button class="label label-info pull-right viewApplicants">View Applicants</button></a>
+              <br>
+              <a href="/#/editPost/{{job.currentObj}}"><button class="label label-info">Edit Details</button></a>
+              
+              <button ng-click="deletePost(job.currentObj)" class="label label-danger">Remove Post</button>              
+            </div>
+            <div class="col-md-12">
+              Posted on: {{job.datePosted}} 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <ul class="pagination">
+        <li class="active"><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

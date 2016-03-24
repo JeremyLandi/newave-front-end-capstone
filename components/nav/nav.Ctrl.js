@@ -7,6 +7,7 @@ Newave.controller("NavCtrl", [
 
 		// switches to signup
 		$scope.signupToggle = function() {
+			console.log("switch to signup");
 	  	$scope.signup = !$scope.signup;
 		}
 
@@ -14,13 +15,13 @@ Newave.controller("NavCtrl", [
 		$scope.userToggle = function(str) {
 			console.log(str);
 			console.log("switch user");
-			if (str === "applicant") {
-		  	$scope.applicant = true;
+			if (str === "employer") {
+		  	$scope.employer = true;
 			}
 			else {
-				$scope.applicant = false;
+				$scope.employer = false;
 			}
-			console.log("$scope.applicant", $scope.applicant);
+			console.log("$scope.employer", $scope.employer);
 		}
 	}
 ]);		

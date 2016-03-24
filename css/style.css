@@ -6,6 +6,14 @@ body {
 .hide {
   display: none;
 }
+
+a:hover {
+  text-decoration: none;
+}
+
+.viewApplicants {
+  font-size: 1.1em;
+}
 input {
   min-width: 200px;
 }
