@@ -35,7 +35,7 @@ Newave.controller("ApplicantLoginCtrl", [
 				(error) => console.log("could not register user")
 			).then(
 				() => { authenticate.createApplicantProfile(user), 
-					$location.path('/applicant');
+				$location.path('/applicant');
 				console.log("successfully registered")
 			},
 			(error) => console.log("could not authenticate user")
@@ -54,29 +54,6 @@ Newave.controller("ApplicantLoginCtrl", [
 				(error) => console.log("could not authenticate user")
 				);
 		}
-	
-		// builds out education options 
-		$scope.selectEdu = [{
-			value: 'highSchool',
-    	label: 'High School'
-  	}, 
-  	{
-    	value: 'bachelor',
-    	label: 'Bachelor Degree'
-		},
-		{
-    	value: 'master',
-    	label: 'Master Degree'
-		},
-		{
-    	value: 'doctorate',
-    	label: 'Doctorate Degree'
-		},
-		{
-    	value: 'professional',
-    	label: 'Professional Degree'
-		}]	
   }
-
 ]);
 

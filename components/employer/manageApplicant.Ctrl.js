@@ -16,8 +16,6 @@ Newave.controller('ManageApplicantCtrl', [
 		let employerJobListing = [];	
 		let applicantIdArray = [];
 
-		
-
 		// GETS ALL APPLICANTS
 		$scope.getApplicant = () => {
 			return $q((resolve, reject) =>
@@ -43,7 +41,6 @@ Newave.controller('ManageApplicantCtrl', [
 							}
 							console.log("$scope.jobApplicants", $scope.jobApplicants);
 							// console.log("userApplicantArray",userApplicantArray);
-						
 					},
 					error => reject(error)	
 				)
@@ -77,5 +74,3 @@ Newave.controller('ManageApplicantCtrl', [
 		}
 		$scope.viewJobApplicant();	
 }])
-
-
