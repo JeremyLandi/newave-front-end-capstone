@@ -11,24 +11,12 @@ Newave.controller('ManageApplicantCtrl', [
 	'jobFactory',
 
 	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory) {
-		
-		$scope.userApplicantArray = [];
+		$scope.jobApplicants = [];
+		let userApplicantArray = [];
 		let employerJobListing = [];	
 		let applicantIdArray = [];
 
-		// COMPARES APPLIED APPLICANTS ID TO USER PROFILE
-		$scope.getSpecficApplicant = () => {
-			console.log("did this run");
-			for (var i = 0; i < applicantIdArray.length; i++) {
-				for (var j = 0; j < $scope.userApplicantArray.length; j++) {
-					if ($scope.userApplicantArray[j].uid === applicantIdArray[j]) {
-						$scope.userApplicantArray.splice(j, 1);
-					}
-					
-				}
-			}
-			console.log("$scope.userApplicantArray",$scope.userApplicantArray);
-		}
+		
 
 		// GETS ALL APPLICANTS
 		$scope.getApplicant = () => {
@@ -39,12 +27,23 @@ Newave.controller('ManageApplicantCtrl', [
 						console.log("userApplicantData",userApplicantData);
 						for (let key in userApplicantData) {
 							userApplicantData[key].key = key;
-							$scope.userApplicantArray.push(userApplicantData[key]);
+							userApplicantArray.push(userApplicantData[key]);
 			 			}
 			 			console.log("userApplicantArray", $scope.userApplicantArray);
 						resolve(userApplicantData);
-					 	$scope.getSpecficApplicant();
 
+					 	// COMPARES APPLIED APPLICANTS ID TO USER PROFILE
+							console.log("did this run");
+							for (var i = 0; i < applicantIdArray.length; i++) {
+								for (var j = 0; j < userApplicantArray.length; j++) {
+									if (applicantIdArray[i] === userApplicantArray[j].uid) {
+										$scope.jobApplicants.push(userApplicantArray[j]);
+									}
+								}
+							}
+							console.log("$scope.jobApplicants", $scope.jobApplicants);
+							// console.log("userApplicantArray",userApplicantArray);
+						
 					},
 					error => reject(error)	
 				)
@@ -57,14 +56,15 @@ Newave.controller('ManageApplicantCtrl', [
 		 		$http.get(`https://frontend-capstone.firebaseio.com/jobApplicants.json?orderBy="jobId"&equalTo="${$routeParams.postID}"`)
 		 		.success(
 		 			jobApplicantData => {
+		 				// PUTS JOBLISTING OBJECTS INTO AN ARRAY
 		 				for (let key in jobApplicantData) {
 							employerJobListing.push(jobApplicantData[key]);
-							console.log("jobApplicantData[currentEmployerObj]", jobApplicantData[key]);
 						}
+						// SORTS THROUGH ARRAY TO GET APPLICANT ID 
+						// ASSOCIATED WITH JOB POSTINGS
 						for (var i = 0; i < employerJobListing.length; i++) {
 							let currentEmployerJobListing = employerJobListing[i]
 							applicantIdArray.push(currentEmployerJobListing.applicantId);
-							console.log("currentEmployerJobListing", currentEmployerJobListing.applicantId);
 						}	
 						$scope.getApplicant();	
 						console.log("applicantIdArray", applicantIdArray);
