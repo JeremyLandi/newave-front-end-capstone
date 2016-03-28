@@ -13,11 +13,9 @@ Newave.controller('ManageAppliedJobsCtrl', [
 	function($scope, $routeParams, $route, $http, $q, $location, authenticate, jobFactory) {
 		
 		let currentUser = null;
-		
 		let jobApplicantArr = [];
 		let jobDataArr = [];
 		let toBeDeleted = "";
-
 		let jobKeys = [];
 		$scope.jobs = [];
 

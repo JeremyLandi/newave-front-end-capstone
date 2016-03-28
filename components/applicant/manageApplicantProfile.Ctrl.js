@@ -11,8 +11,8 @@ Newave.controller('ManageApplicantProfileCtrl', [
 	function($scope, $http, $q, $location, profileFactory,jobFactory) {
 	
 	$scope.profiles = [];
-
 	$scope.applicantID = null;
+	
 	$scope.profile = {
 		firstName: "",
 		lastName: "",
