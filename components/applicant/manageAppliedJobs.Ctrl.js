@@ -3,18 +3,20 @@
 Newave.controller('ManageAppliedJobsCtrl', [
 	'$scope',
 	'$routeParams',
+	'$route',
 	'$http',
 	'$q',
 	'$location',
 	'authenticate',
 	'jobFactory',
 
-	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory) {
+	function($scope, $routeParams, $route, $http, $q, $location, authenticate, jobFactory) {
 		
 		let currentUser = null;
 		
 		let jobApplicantArr = [];
 		let jobDataArr = [];
+		let toBeDeleted = "";
 
 		let jobKeys = [];
 		$scope.jobs = [];
@@ -27,7 +29,7 @@ Newave.controller('ManageAppliedJobsCtrl', [
 
 					// CREATES ARRAY OF JOB OBJECTS
 					for (let key in jobAppliedData) {
-						// jobAppliedData[key].id = key;
+						jobAppliedData[key].id = key;
 						jobApplicantArr.push(jobAppliedData[key]);
 					}		
 
@@ -46,35 +48,41 @@ Newave.controller('ManageAppliedJobsCtrl', [
 		}	
 		$scope.search();
 
+	 	$scope.getResults = () => {
+			jobFactory.searchAllJobPostings()
+			.then(
+				jobData => {
+					for (let key in jobData) {
+						jobData[key].id = key;
+						jobDataArr.push(jobData[key])
+					}
 
- 	$scope.getResults = () => {
-		jobFactory.searchAllJobPostings()
-		.then(
-			jobData => {
-				for (let key in jobData) {
-					jobData[key].id = key;
-					jobDataArr.push(jobData[key])
+					for (var i = 0; i < jobKeys.length; i++) {
+						for (var j = 0; j < jobDataArr.length; j++) {
+							if (jobKeys[i] === jobDataArr[j].id) {
+								$scope.jobs.push(jobDataArr[j]);
+							}
+						}	
+					}
+				});
+		}
+
+		$scope.removeApplication = (jobID) => {
+			angular.forEach(jobApplicantArr, function(value, key) {
+				console.log("value", value.jobId);
+				console.log("jobID", jobID);
+				if (jobID === value.jobId && currentUser.uid === value.applicantId) {
+					toBeDeleted = value.id;
 				}
-				// console.log("jobDataArr", jobDataArr);
-				// console.log("jobKeys", jobKeys);
+			})
+			$scope.remove(toBeDeleted);		
+			console.log(toBeDeleted);
+		}
 
-				// angular.forEach(jobDataArr, function(value) {
-				for (var i = 0; i < jobKeys.length; i++) {
-					for (var j = 0; j < jobDataArr.length; j++) {
-						if (jobKeys[i] === jobDataArr[j].id) {
-							$scope.jobs.push(jobDataArr[j]);
-						}
-					}	
-				}
-				console.log("$scope.jobs", $scope.jobs);
-			});
-	}
-
-		// $scope.removeApplication = (postID) => $http
-		// 	.delete(`https://frontend-capstone.firebaseio.com/jobs/${postID}.json`)
-		// 	.then(function () {
-		// 		$scope.jobs = [];	
-		// 		$scope.search();	
-		// 	})
+		$scope.remove = (toBeDeleted) => $http
+			.delete(`https://frontend-capstone.firebaseio.com/jobApplicants/${toBeDeleted}.json`)
+			.then(function () {
+				$route.reload();
+			})
 
 }])

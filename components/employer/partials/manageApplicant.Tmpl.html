@@ -1,22 +1,43 @@
+<nav>
+  <a href="/#/"><img class="logo" src="http://www.amper-usa.com/sites/amper-usa.com/files/newave-logo_0.gif" alt=""></a>
+  <div class="row ">
+    <ul>
+      <li>
+        <div class="col-xs-3">
+          <input class="form-control" type="text" placeholder="Search Applicant Name" ng-model="applicant.firstName">
+        </div>
+        <button ng-click="search()" class="btn btn-default">
+          <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+      </li>
+      <li class="login">
+        <div class="btn-group">
+          <a href="/#/"><button type="button" class="btn btn-default" ng-click="logoutUser()">Logout
+          </button></a> 
+        </div>      
+      </li>        
+    </ul>
+ </div>   
+</nav>
 <div class="container" style="padding-top: 30px;">
-      <div>
-        <a href="/#/newPost">Post Job</a>
-        <a href="/#/manageProfile">| Edit Profile</a>      
-        <a href="/#/managePost/:postID">| Manage Posts</a>      
-      </div>
+  <div>
+    <a href="/#/newPost">Post Job</a>
+    <a href="/#/manageProfile">| Edit Profile</a>      
+    <a href="/#/managePost/:postID">| Manage Posts</a>      
+  </div>
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
-      <strong>NET Developer Jobs in Nashville, TN </strong>      
+      <strong>NET Developer Jobs in Nashville, TN </strong>    
     </div>
     <div class="panel-body">
-      <div class="row" ng-repeat="applicant in userApplicantArray track by $index">
+      <div class="row" ng-repeat="applicant in jobApplicants | filter:applicant track by $index">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">              
               <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
-              <p><strong>Applicant Name: </strong>{{applicant.firstName}} {{applicant.lastName}}</p>
+              <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
               <span ng-click="showDetails = !showDetails" class="label label-info pull-right">Details</span>
-              <p><strong>Current Job Title:</strong>{{applicant.jobTitle}}</p>
+              <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
               <p>{{applicant.currentEmpl}}</p>
               <p>{{applicant.phone}}</p>
               <p>{{applicant.email}}</p>

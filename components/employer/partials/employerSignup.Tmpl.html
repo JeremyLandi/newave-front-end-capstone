@@ -1,65 +1,61 @@
 <div class="container" style="padding-top: 60px;">
   <h1 class="page-header">Create Business Profile</h1>
   <div class="row">
-    <!-- left column -->
+    <!-- LEFT COLUMN -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
         <img src="http://www.clker.com/cliparts/a/a/4/b/12344034822077289736buggi_build.svg.hi.png" alt="avatar">
         <h6>Upload a Company photo...</h6>
         <input type="file" class="text-center center-block well well-sm">
       </div>
-      <div class="text-center">
-	      <a ng-click="showAdmin = !showAdmin"><button class="btn btn-info">Admin Info</button></a> 
-	      <a ng-click="showExp = !showExp"><button class="btn btn-info">Company Info</button></a> 	      
-      </div>
     </div>
-    <!-- edit form column -->
+    <!-- RIGHT COLUMN -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
       <div class="alert alert-info alert-dismissable">
         <a class="panel-close close" data-dismiss="alert">×</a> 
         <i class="fa fa-coffee"></i>
         Fields marked with an astrix* are required.
       </div>
-    <div ng-hide="showAdmin">
-      <h3>Admin info</h3>
       <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="col-lg-3 control-label">First name*:</label>
-          <div class="col-lg-8">
-            <input autofocus class="form-control" type="text" ng-model="employer.firstName" required>
+        <div ng-hide="showAdmin">
+          <h3>Admin info</h3>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name*:</label>
+            <div class="col-lg-8">
+              <input autofocus class="form-control" type="text" ng-model="employer.firstName" required>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Last name*:</label>
-          <div class="col-lg-8">
-            <input class="form-control" type="text" ng-model="employer.lastName" required>
-          </div>
-        </div>      
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Email*:</label>
-          <div class="col-lg-8">
-            <input class="form-control"  type="text" ng-model="employer.email" required>
-          </div>
-        </div>    			
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name*:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" ng-model="employer.lastName" required>
+            </div>
+          </div>      
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email*:</label>
+            <div class="col-lg-8">
+              <input class="form-control"  type="text" ng-model="employer.email" required>
+            </div>
+          </div>    			
 
-        <div class="form-group">
-          <label class="col-md-3 control-label">Password*:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="password" ng-model="employer.password"required>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password*:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" ng-model="employer.password"required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password*:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" ng-model="employer.passwordConfirm" required>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password*:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="password" ng-model="employer.passwordConfirm" required>
-          </div>
-        </div>
-        
-      
-        <!-- Company Info -->
+          
+        <!-- COMPANY INFO -->
         <div  ng-show="showExp">
-        	<h3>Company info</h3>
-  				<div class="form-group">
+          <h3>Company info</h3>
+          <div class="form-group">
             <label class="col-lg-3 control-label">Company Name</label>
             <div class="col-lg-8">
               <input autofocus class="form-control" type="text" ng-model="employer.name">
@@ -78,6 +74,11 @@
             </div>
           </div>
         </div>
+        <div class="text-center">
+          <a ng-click="showAdmin = !showAdmin"><button class="btn btn-info">Admin Info</button></a> 
+          <a ng-click="showExp = !showExp"><button class="btn btn-info">Company Info</button></a>         
+        </div>
+        <br>
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">

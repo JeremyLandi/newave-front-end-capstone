@@ -13,8 +13,6 @@ Newave.controller('ManagePostCtrl', [
 	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory) {
 		
 		$scope.jobs = [];
-
-
 		$scope.companyName = "";
 
 		$scope.search = () => {

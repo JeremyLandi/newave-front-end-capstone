@@ -13,7 +13,6 @@
           <span class="glyphicon glyphicon-search"></span> Search
         </button>
       </li>
-    
       <li class="login">
         <div class="btn-group">
           <a href="/#/"><button type="button" class="btn btn-default" ng-click="logoutUser()">Logout
@@ -21,14 +20,15 @@
         </div>      
       </li>        
     </ul>
- </div>   
+  </div>   
 </nav>
+
 <div class="container" style="padding-top: 30px;">
-      <div> 
-        <!--  <button ng-click="search()"></button> -->
-        <a href="/#/newPost">Post Job</a>
-        <a href="/#/manageProfile">| Edit Profile</a>
-      </div>
+  <div> 
+    <!--  <button ng-click="search()"></button> -->
+    <a href="/#/newPost">Post Job</a>
+    <a href="/#/manageProfile">| Edit Profile</a>
+  </div>
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
       <strong>Current Job Postings</strong>
@@ -45,8 +45,7 @@
               <p><strong>Description:</strong> {{job.description}}</p>
               <a href="/#/manageApplicant/{{job.id}}" ng-click="viewJobApplicant()"><button class="viewApplicants label label-info pull-right">View Applicants</button></a>
               <br>
-              <a href="/#/editPost/{{job.id}}"><button class="label label-info">Edit Details</button></a>
-              
+              <a href="/#/editPost/{{job.id}}"><button class="label label-info">Edit Details</button></a> 
               <button ng-click="deletePost(job.id)" class="label label-danger">Remove Post</button>              
             </div>
             <div class="col-md-12">
