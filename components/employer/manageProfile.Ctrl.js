@@ -12,7 +12,8 @@ Newave.controller('ManageProfileCtrl', [
 	
 	$scope.profiles = [];
 
-	let currentProfile = {
+	$scope.employerID = null;
+	$scope.profile = {
 		firstName: "",
 		lastName: "",
 		email: "",
@@ -22,23 +23,22 @@ Newave.controller('ManageProfileCtrl', [
 		location: ""
 	}
 
+	// GETS EMPLOYER DATA BASED ON LOGIN
 	profileFactory.getEmployerProfile()
 	.then(
 		employerData => {
 			console.log("employerData", employerData);
-			for (let currentEmployerObj in employerData) {
-				employerData[currentEmployerObj].currentEmployerObj =currentEmployerObj;
-				$scope.profiles.push(employerData[currentEmployerObj]);
-				// $scope.profile = employerData;
-				console.log("$scope.profile", $scope.profiles);
-				// console.log("employerData[currentEmployerObj]", employerData[currentEmployerObj]);
-		}
-			
+			for (let key in employerData) {
+				employerData[key].id = key;
+				$scope.profiles.push(employerData[key]);
+			}			
+			$scope.employerID = $scope.profiles[0].key;
+			console.log("$scope.profile", $scope.profiles[0].key);
 		})
-	
-	
 
-
-
+	$scope.updateProfile = (profile) => {
+		console.log("update", profile);
+		profileFactory.updateEmployerProfile(profile);
+	}
 }])
 

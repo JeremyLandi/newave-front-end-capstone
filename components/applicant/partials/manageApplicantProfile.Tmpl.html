@@ -1,0 +1,134 @@
+<div class="container" style="padding-top: 60px;">
+  <h1 class="page-header">Update Profile</h1>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a photo...</h6>
+        <input type="file" class="text-center center-block well well-sm">
+      </div>
+     
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        Fields marked with an astrix* are required.
+      </div>
+      <form ng-repeat="profile in profiles track by $index"class="form-horizontal" role="form">
+        <h3>Personal info</h3>
+        <div ng-hide="showPersonal">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name*:</label>
+            <div class="col-lg-8">
+              <input autofocus class="form-control" type="text" ng-model="profile.firstName" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name*:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" ng-model="profile.lastName" required>
+            </div>
+          </div>      
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email*:</label>
+            <div class="col-lg-8">
+              <input class="form-control"  type="text" ng-model="profile.email" required>
+            </div>
+          </div>  
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Phone Number*:</label>
+            <div class="col-lg-8">
+              <input class="form-control"  type="text" ng-model="profile.number" required>
+            </div>
+          </div>   			
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password*:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" ng-model="profile.password"required>
+            </div>
+          </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password*:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password" ng-model="profile.passwordConfirm" required>
+          </div>
+        </div>
+      </div>  
+      
+      <!-- Employement Info -->
+      <div  ng-show="showExp">
+      	<h3>Experience info</h3>
+				<div class="form-group">
+          <label class="col-lg-3 control-label">Current Employer</label>
+          <div class="col-lg-8">
+            <input autofocus class="form-control" type="text" ng-model="profile.currentEmpl">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Job Title</label>
+          <div class="col-lg-8">
+            <input  class="form-control" type="text" ng-model="profile.jobTitle">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Location</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" ng-model="profile.currentJobLocation">
+          </div>
+        </div>
+      </div>
+
+      <!-- Education Info -->
+      <div ng-show="showEdu">
+      	<h3>Education info</h3>     
+	      <div class="form-group">      	
+	        <label class="col-lg-3 control-label">Level of Education</label>
+	        <div class="col-lg-8">
+	         <!--  <div class="ui-select">
+	            <select id="profile_time_zone" class="form-control" ng-model="profile.education" ng-options="education as education.label for education in selectEdu">        
+	            	<option>
+	            		Ordered by: {{profile.education.label}}
+	            	</option>     
+	      			</select>
+	          </div>  -->        
+	        </div> 	        
+	      </div>
+	      <div class="form-group">
+          <label class="col-lg-3 control-label">School Attended</label>
+          <div class="col-lg-8">
+            <input autofocus class="form-control" type="text" ng-model="profile.school">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Concentration</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" ng-model="profile.concentration">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Location</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" ng-model="profile.schoolLocation">
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a ng-click="showPersonal = !showPersonal"><button class="btn btn-info">Personal Info</button></a> 
+        <a ng-click="showExp = !showExp"><button class="btn btn-info">Experience</button></a> 
+        <a ng-click="showEdu = !showEdu"><button class="btn btn-info">Education</button></a> 
+      </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input class="btn btn-primary" value="Update Profile" type="button" ng-click="updateProfile(profile)">
+            <span></span>
+            <a href="#/applicant"><input class="btn btn-default" value="Cancel"></a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

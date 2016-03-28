@@ -31,7 +31,7 @@ Newave.controller("EmployerLoginCtrl", [
 				(error) => console.log("could not register employer")
 			).then(
 				() => { Authenticate.createEmployerProfile(employer), 
-					$location.path('/employer');	
+					$location.path('/managePost/{{job.id}}');	
 					$scope.displayLogin = false;
 					$scope.displayLogout = true;
 					console.log("successfully registered")
@@ -44,7 +44,7 @@ Newave.controller("EmployerLoginCtrl", [
 			Authenticate.loginUser(employer.email, employer.password)
 			.then(
 				() => {
-					$location.path('/employer');		
+					$location.path('/managePost/{{job.id}}');		
 					$scope.displayLogin = false;
 					$scope.displayLogout = true;
 					console.log("successfully logged in");

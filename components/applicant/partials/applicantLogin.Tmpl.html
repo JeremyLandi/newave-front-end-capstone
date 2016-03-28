@@ -1,3 +1,39 @@
+<nav>
+	<a href="/#/"><img class="logo" src="http://www.amper-usa.com/sites/amper-usa.com/files/newave-logo_0.gif" alt=""></a>
+  <div class="row ">
+    <ul>
+    <li>
+    </li>
+      <li>
+        <div class="col-xs-3">
+          <input class="form-control" type="text" placeholder="Search Job Title" ng-model="job.jobTitle">
+        </div>
+        <div class="col-xs-3">
+          <input class="form-control" type="text" placeholder="Search City" ng-model="job.location">
+        </div>
+        <button ng-click="search()" class="btn btn-default">
+          <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+      </li>
+    
+      <li class="login">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Login <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li ng-click="userToggle('employer')">
+              <a  href="/#/employerLogin">Employer Login</a>
+            </li>
+            <li ng-click="userToggle('applicant')">
+              <a  href="/#/applicantLogin">User Login</a>
+            </li>        
+          </ul>
+        </div>
+      </li>         
+    </ul>
+ </div>   
+</nav>
 <div class="signIn" ng-if="!signup">	
 	<div class="row">
 		<div class="col-md-12">

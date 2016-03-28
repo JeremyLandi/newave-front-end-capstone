@@ -35,7 +35,7 @@ Newave.controller("ApplicantLoginCtrl", [
 				(error) => console.log("could not register user")
 			).then(
 				() => { authenticate.createApplicantProfile(user), 
-					$location.path('/');
+					$location.path('/applicant');
 				console.log("successfully registered")
 			},
 			(error) => console.log("could not authenticate user")
@@ -48,7 +48,7 @@ Newave.controller("ApplicantLoginCtrl", [
 				() => {
 					$scope.displayLogin = false;
 					$scope.displayLogout = true;
-					$location.path('/');
+					$location.path('/applicant');
 					console.log("successfully logged in");
 				},
 				(error) => console.log("could not authenticate user")

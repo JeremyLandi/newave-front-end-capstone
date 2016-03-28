@@ -80,5 +80,6 @@ Newave.factory('authenticate', function($q, $http) {
 	}
 
 	Authenticate.logoutUser = () => firebaseRef.unauth();
+	console.log("user logged out");
 	return Authenticate;
 });

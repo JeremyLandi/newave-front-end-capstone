@@ -81,9 +81,8 @@
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input class="btn btn-primary" value="Save Changes" type="button" ng-click="getProfile()">
-              <span></span>
-              <a href="#/employer"><input class="btn btn-default" value="Cancel"></a>
+              <input class="btn btn-primary" value="Save Changes" type="button" ng-click="updateProfile(profile)">
+              <a href="#/managePost/{{profile.id}}"><input class="btn btn-default" value="Cancel"></a>
             </div>
           </div>
         </form>
