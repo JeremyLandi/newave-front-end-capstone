@@ -14,42 +14,30 @@ Newave.controller('ManagePostCtrl', [
 		
 		$scope.jobs = [];
 
+
 		$scope.companyName = "";
 
-		let jobPostings = {
-			companyName: "",
-			jobTitle: "",
-			location: "",
-			description: "",
-			datePosted: ""
-		}
+		$scope.search = () => {
+			jobFactory.searchEmployerJobPostings()
+			.then(
+				jobData => {
+					console.log("jobData", jobData);
+					for (let key in jobData) {
+						jobData[key].id = key;
+						$scope.jobs.push(jobData[key]);
+						console.log("jobData[key]", jobData[key]);
+					}	
+				},
+				error => console.log("error")
+			);
+		}	
+		$scope.search();
 
-	$scope.search = () => {
-		jobFactory.searchJobPostings()
-		.then(
-			jobData => {
-				console.log("jobData", jobData);
-				for (let currentObj in jobData) {
-					jobData[currentObj].currentObj = currentObj;
-					$scope.jobs.push(jobData[currentObj]);
-					console.log("jobData[currentObj]", jobData[currentObj]);
-				}	
-			},
-			error => console.log("error")
-		);
-	}	
-	$scope.search();
-
-
-	$scope.deletePost = (postID) => $http
-		.delete(`https://frontend-capstone.firebaseio.com/jobs/${postID}.json`)
-		.then( function () {
-		$scope.jobs = [];	
-		$scope.search();	
-		})
-
-		console.log("delete");
+		$scope.deletePost = (postID) => $http
+			.delete(`https://frontend-capstone.firebaseio.com/jobs/${postID}.json`)
+			.then(function () {
+				$scope.jobs = [];	
+				$scope.search();	
+			})
 
 }])
-
-

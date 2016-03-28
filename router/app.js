@@ -37,19 +37,48 @@ Newave.config(["$routeProvider",
       }).
       when("/employer", {
         templateUrl: "components/employer/partials/employerMain.Tmpl.html",
-        controller: "EmployerMainCtrl"
+        controller: "EmployerMainCtrl",
+        resolve: { isAuth }
       }).
       when("/newPost", {
         templateUrl: "components/employer/partials/employerPost.Tmpl.html",
-        controller: "EmployerPostCtrl"
+        controller: "EmployerPostCtrl",
+        resolve: { isAuth }
+      }).
+       when("/employer", {
+        templateUrl: "components/employer/partials/managePost.Tmpl.html",
+        controller: "ManagePostCtrl",
+        resolve: { isAuth }
       }).
       when("/managePost/:postID", {
         templateUrl: "components/employer/partials/managePost.Tmpl.html",
-        controller: "ManagePostCtrl"
+        controller: "ManagePostCtrl",
+        resolve: { isAuth }
+      }).
+      when("/manageApplicant/:postID", {
+        templateUrl: "components/employer/partials/manageApplicant.Tmpl.html",
+        controller: "ManageApplicantCtrl",
+        resolve: { isAuth }
       }).      
       when("/manageProfile", {
         templateUrl: "components/employer/partials/manageProfile.Tmpl.html",
-        controller: "ManageProfileCtrl"
+        controller: "ManageProfileCtrl",
+        resolve: { isAuth }
+      }).
+      when("/manageApplicantProfile", {
+        templateUrl: "components/applicant/partials/manageApplicantProfile.Tmpl.html",
+        controller: "ManageApplicantProfileCtrl",
+        resolve: { isAuth }
+      }).
+      when("/applicant", {
+        templateUrl: "components/applicant/partials/applicantMain.Tmpl.html",
+        controller: "ApplicantMainCtrl",
+        resolve: { isAuth }
+      }).
+      when("/appliedJobs", {
+        templateUrl: "components/applicant/partials/manageAppliedJobs.Tmpl.html",
+        controller: "ManageAppliedJobsCtrl",
+        resolve: { isAuth }
       }).
 			otherwise({
         redirectTo: "/"

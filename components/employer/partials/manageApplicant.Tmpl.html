@@ -1,0 +1,52 @@
+<div class="container" style="padding-top: 30px;">
+      <div>
+        <a href="/#/newPost">Post Job</a>
+        <a href="/#/manageProfile">| Edit Profile</a>      
+        <a href="/#/managePost/:postID">| Manage Posts</a>      
+      </div>
+  <div class="panel panel-default panel-order">
+    <div class="panel-heading">
+      <strong>NET Developer Jobs in Nashville, TN </strong>      
+    </div>
+    <div class="panel-body">
+      <div class="row" ng-repeat="applicant in userApplicantArray track by $index">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">              
+              <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
+              <p><strong>Applicant Name: </strong>{{applicant.firstName}} {{applicant.lastName}}</p>
+              <span ng-click="showDetails = !showDetails" class="label label-info pull-right">Details</span>
+              <p><strong>Current Job Title:</strong>{{applicant.jobTitle}}</p>
+              <p>{{applicant.currentEmpl}}</p>
+              <p>{{applicant.phone}}</p>
+              <p>{{applicant.email}}</p>
+              <div ng-if="showDetails">
+                <h5>Experience</h5>
+                <p></p>
+                <h5>Education</h5>
+                <p>{{applicant.school}}</p>
+                <p>{{applicant.education}}</p>
+                <p>{{applicant.concentration}}</p>
+                <p>{{applicant.schoolLocation}}</p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              Posted on: 05/30/2014 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <ul class="pagination">
+        <li class="active"><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
