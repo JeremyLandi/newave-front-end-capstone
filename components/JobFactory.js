@@ -4,8 +4,9 @@ Newave.factory("jobFactory", [
   "$q",
   "$http",
   "authenticate",
+  "$routeParams",
 
-  function ($q, $http, authenticate) {
+  function ($q, $http, authenticate, $routeParams) {
 
   let getJobs = {};
 
@@ -30,6 +31,18 @@ Newave.factory("jobFactory", [
           jobAppliedData => {
             resolve(jobAppliedData);
             console.log("SUCCESS", jobAppliedData);
+          },
+          error => reject(error)
+        )
+    )
+  }
+
+  getJobs.searchJobPostingsForEmpPost = (postID) => {
+    return $q((resolve, reject) =>
+      $http.get(`https://frontend-capstone.firebaseio.com/jobs/${postID}.json`)
+        .success(
+          jobData => {
+            resolve(jobData);
           },
           error => reject(error)
         )

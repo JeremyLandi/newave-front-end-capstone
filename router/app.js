@@ -54,6 +54,11 @@ Newave.config(["$routeProvider",
         templateUrl: "components/employer/partials/managePost.Tmpl.html",
         controller: "ManagePostCtrl",
         resolve: { isAuth }
+      }).      
+      when("/editPost/:postID", {
+        templateUrl: "components/employer/partials/editPost.Tmpl.html",
+        controller: "EditPostCtrl",
+        resolve: { isAuth }
       }).
       when("/manageApplicant/:postID", {
         templateUrl: "components/employer/partials/manageApplicant.Tmpl.html",

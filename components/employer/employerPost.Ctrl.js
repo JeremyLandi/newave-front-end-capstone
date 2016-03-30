@@ -32,14 +32,14 @@ Newave.controller('EmployerPostCtrl', [
 				datePosted: myDate.toLocaleString()
 			};
 
-		$http.post(`https://frontend-capstone.firebaseio.com/jobs/.json`, 
-			JSON.stringify(newJob))
-		.success(
-          job => {
-          	console.log("SUCCESS", job);
-          	$location.url('/employer')
-          },
-          error => {console.log("error");}
+			$http.post(`https://frontend-capstone.firebaseio.com/jobs/.json`, 
+				JSON.stringify(newJob))
+			.success(
+        job => {
+        	console.log("SUCCESS", job);
+        	$location.url('/employer')
+        },
+        error => {console.log("error");}
 			)
 		}		
 }])

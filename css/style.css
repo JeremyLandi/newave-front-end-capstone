@@ -190,3 +190,108 @@ h3 {
   text-align: center;
   line-height: 300%;
 }
+
+/*BUTTON*/
+
+.red {
+  background-color: white;
+  padding: 13px;
+  border-radius: 100%;
+  border: outset 1px silver;
+  box-shadow: inset 0px 0px 19px 5px red;
+}
+.red:hover {
+  background-color: red;
+  box-shadow: inset 0px 0px 6px white;
+}
+
+.yellow {
+  background-color: white;
+  padding: 13px;
+  border-radius: 100%;
+  border: outset 1px silver;
+  box-shadow: inset 0px 0px 19px 5px #ec971f;
+}
+.yellow:hover {
+  background-color: #ec971f;
+  box-shadow: inset 0px 0px 6px white;
+}
+
+.green {
+  background-color: white;
+  padding: 13px;
+  border-radius: 100%;
+  border: outset 1px silver;
+  box-shadow: inset 0px 0px 19px 5px green;
+}
+.green:hover {
+  background-color: green;
+  box-shadow: inset 0px 0px 6px white;
+}
+/*REMOVES BLUE BOX AROUNF BUTTONS*/
+button:focus {outline:0;}
+
+
+.label {
+  padding: 4px;
+}
+
+
+
+
+/***********************
+  BUTTONS
+************************/
+/*.btn-info {
+    box-shadow: 0 3px 0 0 #007299;
+}
+.btn-info:active, .btn-info.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+
+.btn-primary {
+    box-shadow: 0 3px 0 0 #007299;
+}
+.btn-primary:active, .btn-primary.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+
+.btn-warning {
+    box-shadow: 0 3px 0 0 #d88a1c;
+}
+.btn-warning:active, .btn-warning.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+
+.btn-danger {
+    box-shadow: 0 3px 0 0 #b72826;
+}
+.btn-danger:active, .btn-danger.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+
+.btn-success {
+    box-shadow: 0 3px 0 0 #3f913f;
+}
+.btn-success:active, .btn-success.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+
+
+*/
+
