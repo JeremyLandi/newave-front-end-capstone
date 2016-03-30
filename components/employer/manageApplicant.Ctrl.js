@@ -11,10 +11,100 @@ Newave.controller('ManageApplicantCtrl', [
 	'jobFactory',
 
 	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory) {
-		$scope.jobApplicants = [];
+
+		var ref = new Firebase("https://frontend-capstone.firebaseio.com/applicantProfiles");
+
 		let userApplicantArray = [];
 		let employerJobListing = [];	
 		let applicantIdArray = [];
+
+		$scope.showNew = true;
+		// $scope.showPotenital = false;
+		// $scope.showNeutral = false;
+		// $scope.showRemoved = false;
+
+		$scope.jobApplicants = [];
+
+		$scope.newApplicants = [];
+		$scope.potentialArr = [];
+		$scope.neutralArr = [];
+		$scope.removedArr = [];
+
+		// SWITCH VIEWS
+		$scope.New = () => {
+			$scope.showNew = true;
+			$scope.showPotenital = false;
+			$scope.showNeutral = false;
+			$scope.showRemoved = false;
+		}
+
+		$scope.Potenital = () => {
+			$scope.showNew = false;
+			$scope.showPotenital = true;
+			$scope.showNeutral = false;
+			$scope.showRemoved = false;
+		}
+
+		$scope.Neutral = () => {
+			$scope.showNew = false;
+			$scope.showPotenital = false;
+			$scope.showNeutral = true;
+			$scope.showRemoved = false;
+		}
+
+		$scope.Removed = () => {
+			$scope.showNew = false;
+			$scope.showPotenital = false;
+			$scope.showNeutral = false;
+			$scope.showRemoved = true;
+		}
+
+		$scope.sort = () => {
+			for (let i = 0; i < $scope.jobApplicants.length; i++) {
+				if ($scope.jobApplicants[i].potential === true) {
+					$scope.potentialArr.push($scope.jobApplicants[i]);
+					console.log("potential", $scope.potentialArr);
+				}
+				else if ($scope.jobApplicants[i].neutral == true) {
+					console.log("neutral");
+					$scope.neutralArr.push($scope.jobApplicants[i])
+				}
+				else if ($scope.jobApplicants[i].removed == true) {
+					console.log("removed");
+					$scope.removedArr.push($scope.jobApplicants[i])
+				}
+				else {
+					$scope.newApplicants.push($scope.jobApplicants[i])
+					console.log("newApplicants");
+				}
+			}
+		}
+
+		// ADDS/UPDATES STATUS OF APPLIANT TO FB OBJECT
+		$scope.potential = (id) => {
+			var userRef = ref.child(id)
+			userRef.update({
+				potential: true,
+				neutral: false,
+				removed: false
+			})
+		}
+		$scope.neutral = (id) => {
+			var userRef = ref.child(id)
+			userRef.update({
+				potential: false,
+				neutral: true,
+				removed: false
+			})
+		}
+		$scope.remove = (id) => {
+			var userRef = ref.child(id)
+			userRef.update({
+				potential: false,
+				neutral: false,
+				removed: true
+			})
+		}
 
 		// GETS ALL APPLICANTS
 		$scope.getApplicant = () => {
@@ -27,20 +117,19 @@ Newave.controller('ManageApplicantCtrl', [
 							userApplicantData[key].key = key;
 							userApplicantArray.push(userApplicantData[key]);
 			 			}
-			 			console.log("userApplicantArray", $scope.userApplicantArray);
+			 			console.log("userApplicantArray", userApplicantArray);
 						resolve(userApplicantData);
 
 					 	// COMPARES APPLIED APPLICANTS ID TO USER PROFILE
-							console.log("did this run");
-							for (var i = 0; i < applicantIdArray.length; i++) {
-								for (var j = 0; j < userApplicantArray.length; j++) {
-									if (applicantIdArray[i] === userApplicantArray[j].uid) {
-										$scope.jobApplicants.push(userApplicantArray[j]);
-									}
+						for (var i = 0; i < applicantIdArray.length; i++) {
+							for (var j = 0; j < userApplicantArray.length; j++) {
+								if (applicantIdArray[i] === userApplicantArray[j].uid) {
+									$scope.jobApplicants.push(userApplicantArray[j]);
 								}
 							}
-							console.log("$scope.jobApplicants", $scope.jobApplicants);
-							// console.log("userApplicantArray",userApplicantArray);
+						}
+						// console.log("$scope.jobApplicants", $scope.jobApplicants);
+						$scope.sort();
 					},
 					error => reject(error)	
 				)
@@ -64,8 +153,8 @@ Newave.controller('ManageApplicantCtrl', [
 							applicantIdArray.push(currentEmployerJobListing.applicantId);
 						}	
 						$scope.getApplicant();	
-						console.log("applicantIdArray", applicantIdArray);
-						console.log("employerJobListing", employerJobListing);
+						// console.log("applicantIdArray", applicantIdArray);
+						// console.log("employerJobListing", employerJobListing);
 		 				resolve(jobApplicantData);
 		 			},
 		 			error => reject(error)
