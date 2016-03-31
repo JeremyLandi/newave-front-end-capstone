@@ -1,6 +1,6 @@
 "use strict";
 
-let Newave = angular.module("NewaveApp", ["ngRoute", "firebase"]);
+let Newave = angular.module("NewaveApp", ["ngRoute", "firebase", "ngFileUpload"]);
 
 let isAuth = (authenticate) => new Promise((resolve, reject) => {
   if (authenticate.isAuthenticated()) {

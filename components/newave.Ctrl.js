@@ -3,8 +3,9 @@
 Newave.controller('NewaveCtrl', [
 	"$scope",	
 	"jobFactory",
+	"Upload",
 
-	function($scope, jobFactory){
+	function($scope, jobFactory, upload){
 		$scope.allJobs = [];
 
 		jobFactory.searchAllJobPostings()
@@ -21,6 +22,5 @@ Newave.controller('NewaveCtrl', [
 
 		$scope.logoutUser = () => firebaseRef.unauth();
 			console.log("user logged out");
-
   }
 ])
