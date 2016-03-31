@@ -9,8 +9,9 @@ Newave.controller('ManageApplicantCtrl', [
 	'$location',
 	'authenticate',
 	'jobFactory',
+	'$sce',
 
-	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory) {
+	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory, $sce) {
 
 		var ref = new Firebase("https://frontend-capstone.firebaseio.com/applicantProfiles");
 
@@ -123,18 +124,25 @@ Newave.controller('ManageApplicantCtrl', [
 					 	// COMPARES APPLIED APPLICANTS ID TO USER PROFILE
 						for (var i = 0; i < applicantIdArray.length; i++) {
 							for (var j = 0; j < userApplicantArray.length; j++) {
-								if (applicantIdArray[i] === userApplicantArray[j].uid) {
+								if (applicantIdArray[i].applicantId === userApplicantArray[j].uid) {
+									userApplicantArray[j].audio = applicantIdArray[i].audio;
 									$scope.jobApplicants.push(userApplicantArray[j]);
 								}
 							}
 						}
-						// console.log("$scope.jobApplicants", $scope.jobApplicants);
-						$scope.sort();
+						console.log("$scope.jobApplicants", $scope.jobApplicants[0].audio);
+						// $scope.sort();
 					},
 					error => reject(error)	
 				)
 			)	
 		}
+
+			
+	let applicantObj =  {
+		applicantId: "",
+		audio: ""
+	}
 				
 		// GETS APPLICANT ID BASED ON CLICKED JOB
 		$scope.viewJobApplicant = () => {
@@ -146,12 +154,29 @@ Newave.controller('ManageApplicantCtrl', [
 		 				for (let key in jobApplicantData) {
 							employerJobListing.push(jobApplicantData[key]);
 						}
-						// SORTS THROUGH ARRAY TO GET APPLICANT ID 
-						// ASSOCIATED WITH JOB POSTINGS
+						console.log("employerJobListing", employerJobListing);
+
+
+						// SORTS THROUGH ARRAY TO GET APPLICANT ID ASSOCIATED WITH JOB POSTINGS
 						for (var i = 0; i < employerJobListing.length; i++) {
-							let currentEmployerJobListing = employerJobListing[i]
-							applicantIdArray.push(currentEmployerJobListing.applicantId);
+
+							// console.log("employerJobListing[i]", employerJobListing[i]);
+
+							// console.log("employerJobListing[i].audio", employerJobListing[i].audio);
+
+
+							// let currentAudio = employerJobListing[i].audio;
+							// console.log("currentAudio", currentAudio);
+
+							let audio = window.atob(employerJobListing[i].audio);
+							
+							applicantObj.audio = $sce.trustAsResourceUrl(audio);
+
+							applicantObj.applicantId = employerJobListing[i].applicantId;
+
+							applicantIdArray.push(applicantObj);
 						}	
+							console.log("applicantIdArray", applicantIdArray);
 						$scope.getApplicant();	
 						// console.log("applicantIdArray", applicantIdArray);
 						// console.log("employerJobListing", employerJobListing);

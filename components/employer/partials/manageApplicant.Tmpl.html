@@ -37,7 +37,7 @@
     <div class="panel-body">
 
       <!-- NEW APPLIANTS -->
-      <div class="row" ng-if="showNew" ng-repeat="applicant in newApplicants | filter:applicant track by $index">
+      <div class="row" ng-if="showNew" ng-repeat="applicant in jobApplicants | filter:applicant track by $index">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">              
@@ -63,6 +63,10 @@
                 <p>{{applicant.education}}</p>
                 <p>{{applicant.concentration}}</p>
                 <p>{{applicant.schoolLocation}}</p>
+              <audio controls>
+                <source ng-src="{{applicant.audio}}" type="audio/ogg">
+                <source src="{{applicant.audio}}" type="audio/mpeg">
+              </audio>          
               </div>
             </div>
             <div class="col-md-12">
