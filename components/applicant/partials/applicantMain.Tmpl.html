@@ -25,15 +25,17 @@
 </nav>
 
 <div class="container" style="padding-top: 30px;">
-      <div>        
-        <a href="/#/manageApplicantProfile">Edit Profile</a>      
-        <a href="/#/appliedJobs">| View Applied Jobs</a>      
-      </div>
+  <div>        
+    <a href="/#/manageApplicantProfile">Edit Profile</a>      
+    <a href="/#/appliedJobs">| View Applied Jobs</a>      
+  </div>
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
-      <strong>{{job.jobTitle}} Jobs {{job.location}} </strong>      
+      <strong>{{job.jobTitle}} Jobs</strong>    
     </div>
     <div class="panel-body">
+      <uib-alert close="closeAlert()" ng-if="alert" 
+      dismiss-on-timeout="3000" type="success">Your application and interview have been sent.</uib-alert>
       <div ng-repeat="job in allJobs | filter:job" class="row">
         <div class="col-md-1"><img src="https://avatars3.githubusercontent.com/u/2388224?v=3&s=200" class="media-object"></div>
         <div class="col-md-11">
@@ -45,24 +47,36 @@
               <p>{{job.companyName}}</p>
               <p>{{job.location}}</p>
               <div ng-if="showDescription">
-                <p><strong>Description:</strong> {{job.description}}</p>
-                <button ng-show="job.id" ng-click="job.id = !job.id" class="label label-danger"><span>Apply</span></button>
-                <p>In order to apply for this job you must complete a recorded interview answering a series of questions which will be presented to you once you hit record. BE AWARE you only get one chance at this recording.</p>
-                
-                  <h5>Briefly tell us about yourself</h5>
-                  <h5>Tell us why you are appling for this job.</h5>
-                
-                <!-- AUDIO -->
-                <div class="wrapper">
-                  <section class="main-controls">
-                    <div id="buttons">
-                      <button ng-click="startRecord()" class="record">Record</button>
-                      <button ng-click="stopRecord()" class="stop">Stop</button>
-                    </div>
-                  </section>
+                <p ng-bind-html="job.description"><strong>Description:</strong> {{job.description}}</p>
+                <br>
+                <button ng-show="job.$$hashKey" ng-click="job.$$hashKey = !job.$$hashKey" class="label label-success"><span>Apply</span></button>
+                <br>
+                <div class="check-element sample-show-hide" ng-show="!job.$$hashKey">
+                  <p>In order to apply for this job you must answer a series of questions in a recorded interview. Please start recording when you're ready to begin. <strong>BE AWARE</strong> you only get one chance at this recording.</p> 
+                  <br>
+                  <h5>{{job.questionOne}}</h5>
+                  <h5>{{job.questionTwo}}</h5>
+                  <br>
+                  <!-- AUDIO -->
+                  <div class="wrapper">
+                    <section class="main-controls">
+                      <div id="buttons">
+                        <div ng-hide="record">
+                         <button class="label label-primary" ng-click="startRecord(); record = !record">Start Recording</button>
+                        </div> 
+                        <div ng-show="record">
+                          <button ng-show="stopRecord" class="label label-danger" ng-click="stopRecord(); stopRecord = !stopRecord">Stop Recording</button>
+                        </div>  
+                      </div>
+                    </section>
+                  </div>                   
+                  <div ng-show="application" ng-hide="stopRecord">  
+                    <button ng-show="!application" ng-click="applicantApply(job.id); createAudioSection(); application = !application" class="label label-success"><span>Apply</span></button>
+                  </div>  
+                  <div ng-show="application">
+                    <p>Great job on riding a Newave of success! Your application and interview have been sent to {{job.companyName}}. Thank you.</p>
+                  </div>
                 </div>
-
-                <button ng-click="applicantApply(job.id); createAudioSection()" class="label label-danger"><span>Apply</span></button>
 
               </div>
             </div>
@@ -84,5 +98,8 @@
         <li><a href="#">&raquo;</a></li>
       </ul>
     </div>
+  </div>
+  <div class="glassdoor">
+    <a href='https://www.glassdoor.com/index.htm' target='_blank'>powered by <img src='https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png' title='Job Search' /></a>
   </div>
 </div>

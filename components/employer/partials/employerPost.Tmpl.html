@@ -20,11 +20,21 @@
               <label class="control-label">Location</label>
               <input type="text" class="form-control" ng-model="newJobPosting.location">
             </div>
+            <div class="col-xs-12">
+              <label class="control-label">Audio Question #1</label>
+              <input type="text" class="form-control" ng-model="newJobPosting.questionOne">
+            </div>
+            <div class="col-xs-12">
+              <label class="control-label">Audio Question #2</label>
+              <input type="text" placeholder="Leave blank if you don't need a second question" class="form-control" ng-model="newJobPosting.questionTwo">
+            </div>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label">Description</label>
-          <textarea class="form-control" name="review" rows="8" ng-model="newJobPosting.description"></textarea>
+          <!-- <textarea class="form-control" name="review" rows="8" ng-model="newJobPosting.description"></textarea> -->
+          <div text-angular="text-angular" name="htmlcontent" ng-model="newJobPosting.description" ta-disabled='disabled'>
+          </div> 
         </div>
         <button ng-click="postJob()" type="submit" class="btn btn-default">Post</button>
         <a href="/#/employer/">

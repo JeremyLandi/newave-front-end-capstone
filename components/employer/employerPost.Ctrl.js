@@ -16,6 +16,8 @@ Newave.controller('EmployerPostCtrl', [
 			jobTitle: "",
 			location: "",
 			description: "",
+			questionOne: "",
+			questionTwo: "",
 			employerUid: "",		
 			applicantUid: "",
 			datePosted: ""			
@@ -27,6 +29,8 @@ Newave.controller('EmployerPostCtrl', [
 				companyName: $scope.newJobPosting.companyName,
 				jobTitle: $scope.newJobPosting.jobTitle,
 				location: $scope.newJobPosting.location,
+				questionOne: $scope.newJobPosting.questionOne,
+				questionTwo: $scope.newJobPosting.questionTwo,
 				description: $scope.newJobPosting.description,
 				employerUid: firebaseRef.getAuth().uid,
 				datePosted: myDate.toLocaleString()

@@ -47,8 +47,6 @@ nav ul li {
   margin: -5px; 
   border-radius: 10px;
 }
-
-
 .logo {
   width: 150px;
   float: left;
@@ -56,21 +54,20 @@ nav ul li {
 ul {
   margin: 75px auto 0;
 }
-/*.movieList {
-  padding-bottom: 5px;
-  width: 25%;
+
+
+
+/**********
+ANIMATION
+**********/
+.sample-show-hide {
+  -webkit-transition:all linear 1s;
+  transition:all linear 1s;
 }
-.movieList button {
-  border:outset gray 1px;
+.sample-show-hide.ng-hide {
+  opacity:0;
 }
 
-.movieList button:hover {
-  border:inset gray 1px;
-  background-color: #ffff66;
-}*/
-/*.btn-primary {
-  margin-right:5%;
-}*/
 
 /**********
 MAIN SECTION
@@ -236,7 +233,13 @@ button:focus {outline:0;}
   padding: 4px;
 }
 
+.glassdoor {
+  float: right;
+}
 
+.glassdoor img {
+  width: 100px;
+}
 
 
 /***********************

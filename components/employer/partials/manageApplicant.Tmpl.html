@@ -28,16 +28,17 @@
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
       <span>
-        <button class="label label-info" ng-click="New()">New Applicants</button>
-        <button class="label label-success" ng-click="Potenital()">Potential</button>
-        <button class="label label-warning" ng-click="Neutral()">Neutral</button>
-        <button class="label label-danger" ng-click="Removed()">Removed</button>
+        <button style="border: 2px outset silver;padding: 2px 15px" class="btn btn-primary" ng-click="ViewAll()">All</button>
+        <button class="label label-info" ng-click="ViewNew()">New Applicants</button>
+        <button class="label label-success" ng-click="ViewPotenital()">Potential</button>
+        <button class="label label-warning" ng-click="ViewNeutral()">Neutral</button>
+        <button class="label label-danger" ng-click="ViewRemoved()">Removed</button>
       </span>    
     </div>
     <div class="panel-body">
 
-      <!-- NEW APPLIANTS -->
-      <div class="row" ng-if="showNew" ng-repeat="applicant in jobApplicants | filter:applicant track by $index">
+      <!-- All APPLIANTS -->
+      <div class="row" ng-if="showAll" ng-repeat="applicant in jobApplicants | filter:applicant track by $index">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-12">              
@@ -48,9 +49,9 @@
               <p>{{applicant.currentEmpl}}</p>
               <span>
                 <div class="colors pull-right">
-                  <button ng-click="potential(applicant.key)" class="green"></button>
-                  <button ng-click="neutral(applicant.key)" class="yellow"></button>
-                  <button ng-click="remove(applicant.key)" class="red"></button>
+                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
                 </div>
               </span>
              <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
@@ -65,7 +66,45 @@
                 <p>{{applicant.schoolLocation}}</p>
               <audio controls>
                 <source ng-src="{{applicant.audio}}" type="audio/ogg">
-                <source src="{{applicant.audio}}" type="audio/mpeg">
+              </audio>          
+              </div>
+            </div>
+            <div class="col-md-12">
+              Posted on: 05/30/2014 
+            </div>
+          </div>
+        </div>
+      </div>  
+
+      <!-- NEW APPLIANTS -->
+      <div class="row" ng-if="showNew" ng-repeat="applicant in newApplicants | filter:applicant track by $index">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-12">              
+              <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
+              <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
+              <button ng-click="showDetails = !showDetails" class="label label-info pull-right">Details</button>
+              <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
+              <p>{{applicant.currentEmpl}}</p>
+              <span>
+                <div class="colors pull-right">
+                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
+                </div>
+              </span>
+             <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
+              <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
+              <div ng-if="showDetails">
+                <h5>Experience</h5>
+                <p></p>
+                <h5>Education</h5>
+                <p>{{applicant.school}}</p>
+                <p>{{applicant.education}}</p>
+                <p>{{applicant.concentration}}</p>
+                <p>{{applicant.schoolLocation}}</p>
+              <audio controls>
+                <source ng-src="{{applicant.audio}}" type="audio/ogg">
               </audio>          
               </div>
             </div>
@@ -88,9 +127,9 @@
               <p>{{applicant.currentEmpl}}</p>
               <span>
                 <div class="colors pull-right">
-                  <button ng-click="potential(applicant.key)" class="green"></button>
-                  <button ng-click="neutral(applicant.key)" class="yellow"></button>
-                  <button ng-click="remove(applicant.key)" class="red"></button>
+                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
                 </div>
               </span>
              <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
@@ -103,6 +142,9 @@
                 <p>{{applicant.education}}</p>
                 <p>{{applicant.concentration}}</p>
                 <p>{{applicant.schoolLocation}}</p>
+                <audio controls>
+                  <source ng-src="{{applicant.audio}}" type="audio/ogg">
+                </audio>  
               </div>
             </div>
             <div class="col-md-12">
@@ -124,9 +166,9 @@
               <p>{{applicant.currentEmpl}}</p>
               <span>
                 <div class="colors pull-right">
-                  <button ng-click="potential(applicant.key)" class="green"></button>
-                  <button ng-click="neutral(applicant.key)" class="yellow"></button>
-                  <button ng-click="remove(applicant.key)" class="red"></button>
+                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
                 </div>
               </span>
              <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
@@ -139,6 +181,9 @@
                 <p>{{applicant.education}}</p>
                 <p>{{applicant.concentration}}</p>
                 <p>{{applicant.schoolLocation}}</p>
+                <audio controls>
+                  <source ng-src="{{applicant.audio}}" type="audio/ogg">
+                </audio>  
               </div>
             </div>
             <div class="col-md-12">
@@ -160,9 +205,9 @@
               <p>{{applicant.currentEmpl}}</p>
               <span>
                 <div class="colors pull-right">
-                  <button ng-click="potential(applicant.key)" class="green"></button>
-                  <button ng-click="neutral(applicant.key)" class="yellow"></button>
-                  <button ng-click="remove(applicant.key)" class="red"></button>
+                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
                 </div>
               </span>
              <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
@@ -175,6 +220,9 @@
                 <p>{{applicant.education}}</p>
                 <p>{{applicant.concentration}}</p>
                 <p>{{applicant.schoolLocation}}</p>
+                <audio controls>
+                  <source ng-src="{{applicant.audio}}" type="audio/ogg">
+                </audio>    
               </div>
             </div>
             <div class="col-md-12">

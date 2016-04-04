@@ -29,21 +29,38 @@ Newave.controller('ApplicantMainCtrl', [
 			error => console.log("error")
 		);
 
+		// ALERT SECTION 
+		$scope.alert = false;
+		$scope.showAlert = () => {
+			$scope.alert = true;
+		}
+		$scope.closeAlert = function(index) {
+		    $scope.alert = false;
+		};
+
 	let applicants = {
 		jobId: "",
-		applicantId: ""
+		applicantId: "",
+		potential: "",
+		neutral: "",
+		removed:""
 	};
 
 	// APPLY FOR JOB
 	$scope.applicantApply = (postId) => {
 		// gets/sets user ID
 		let currentApplicant = authenticate.getCurrentUser();
-		console.log("currentApplicant.uid", currentApplicant.uid);
-			applicants.applicantId = currentApplicant.uid;
+		// console.log("currentApplicant.uid", currentApplicant.uid);
+		applicants.applicantId = currentApplicant.uid;
 
 		console.log("postID", postId);
 		applicants.jobId = postId;
 		applicants.audio = newAudio;
+		applicants.potential = false;
+		applicants.neutral = false;
+		applicants.removed = false;
+
+		$scope.showAlert();
 
 		$http.post(`https://frontend-capstone.firebaseio.com/jobApplicants/.json`, JSON.stringify(applicants))
 	}
@@ -67,9 +84,6 @@ Newave.controller('ApplicantMainCtrl', [
 		      mediaRecorder.start();
 		      console.log(mediaRecorder.state);
 		      console.log("recorder started");
-
-		      // stop.disabled = false;
-		      // record.disabled = true;
 		    }
 
 		     $scope.stopRecord = () => {
@@ -77,9 +91,6 @@ Newave.controller('ApplicantMainCtrl', [
 		      console.log(mediaRecorder.state);
 		      console.log("recorder stopped");
 		      // mediaRecorder.requestData();
-
-		      // stop.disabled = true;
-		      // record.disabled = false;
 		    }
 
 		    mediaRecorder.onstop = function(e) {
@@ -110,7 +121,6 @@ Newave.controller('ApplicantMainCtrl', [
 		      	}
 		      );
 		    }
-
 		    mediaRecorder.ondataavailable = function(e) {
 		      chunks.push(e.data);
 		    }
@@ -126,7 +136,6 @@ Newave.controller('ApplicantMainCtrl', [
 		}
 
 	}
-		
 }])
 
 
