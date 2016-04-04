@@ -13,7 +13,6 @@
           <span class="glyphicon glyphicon-search"></span> Search
         </button>
       </li>
-    
       <li class="login">
         <div class="btn-group">
           <a href="/#/"><button type="button" class="btn btn-default" ng-click="logoutUser()">Logout
@@ -24,6 +23,7 @@
  </div>   
 </nav>
 
+<!-- MAIN SECTION        -->
 <div class="container" style="padding-top: 30px;">
       <div>        
         <a href="/#/manageApplicantProfile">Edit Profile</a>      
@@ -45,8 +45,16 @@
               <p>{{job.companyName}}</p>
               <p>{{job.location}}</p>
               <div ng-if="showDescription">
-                <p><strong>Description:</strong> {{job.description}}</p>
-                <button ng-click="removeApplication(job.id)" class="label label-danger"><span>Remove Application</span></button>
+                <p ng-bind-html="job.description"><strong>Description:</strong> {{job.description}}</p>
+                <button class="label label-danger"
+                mwl-confirm
+                message="Are you sure you want to remove this application for a <strong>{{job.jobTitle}}</strong> for <strong>{{job.companyName}}</strong>?"
+                placement="right"
+                on-confirm="removeApplication(job.id)"
+                confirm-button-type="danger"
+                cancel-button-type="default">Remove Application
+              </button>
+                <!-- <button ng-click="removeApplication(job.id)" class="label label-danger"><span>Remove Application</span></button> -->
               </div>
             </div>
             <div class="col-md-12">

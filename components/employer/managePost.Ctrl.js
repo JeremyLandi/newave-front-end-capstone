@@ -38,9 +38,19 @@ Newave.controller('ManagePostCtrl', [
 		}	
 		$scope.search();
 
+		// ALERT SECTION 
+		$scope.alert = false;
+		$scope.showAlert = () => {
+			$scope.alert = true;
+		}
+		$scope.closeAlert = function(index) {
+		    $scope.alert = false;
+		};
+
 		$scope.deletePost = (postID) => $http
 			.delete(`https://frontend-capstone.firebaseio.com/jobs/${postID}.json`)
 			.then(function () {
+				$scope.showAlert();
 				$scope.jobs = [];	
 				$scope.search();	
 			})

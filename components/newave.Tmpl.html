@@ -36,13 +36,13 @@
         </div>      
       </li>       
     </ul>
- </div>   
+ </div>  
 </nav>
-  
+<button ng-click="glassdoorButton()">Glassdoor</button>
 <div class="container" style="padding-top: 30px;">
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
-      <strong>NET Developer Jobs in Nashville, TN </strong>      
+      <strong>Available Jobs</strong>      
     </div>
     <div class="panel-body">
       <div ng-repeat="job in allJobs | filter:job" class="row">
@@ -59,7 +59,7 @@
               <span>{{job.location}}</span>
               <br>
               <div ng-if="showDescription">
-                <div>{{job.description}}</div>
+                <div ng-bind-html="job.description">{{job.description}}</div>
                 <br>
                 <a href="/#/applicantLogin"><button class="label label-danger"><span>Apply</span></button></a>
               </div>

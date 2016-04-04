@@ -39,7 +39,7 @@ Newave.controller('ManageAppliedJobsCtrl', [
 					})
 					
 					$scope.getResults();
-					// console.log("jobKeys",jobKeys);
+					console.log("jobKeys",jobKeys);
 				},
 				error => console.log("error")
 			);
@@ -54,7 +54,6 @@ Newave.controller('ManageAppliedJobsCtrl', [
 						jobData[key].id = key;
 						jobDataArr.push(jobData[key])
 					}
-
 					for (var i = 0; i < jobKeys.length; i++) {
 						for (var j = 0; j < jobDataArr.length; j++) {
 							if (jobKeys[i] === jobDataArr[j].id) {
@@ -82,5 +81,4 @@ Newave.controller('ManageAppliedJobsCtrl', [
 			.then(function () {
 				$route.reload();
 			})
-
 }])

@@ -1,6 +1,23 @@
 "use strict";
 
-let Newave = angular.module("NewaveApp", ["ngRoute", "firebase", "ngFileUpload"]);
+let Newave = angular.module("NewaveApp", ["ngRoute", "firebase", "ngFileUpload", "textAngular", "ngAnimate", "ui.bootstrap", "mwl.confirm"]);
+
+Newave.config(['$provide', function($provide){
+        // this demonstrates how to register a new tool and add it to the default toolbar
+        $provide.decorator('taOptions', ['$delegate', function(taOptions){
+            // $delegate is the taOptions we are decorating
+            // here we override the default toolbars and classes specified in taOptions.
+            taOptions.forceTextAngularSanitize = true; // set false to allow the textAngular-sanitize provider to be replaced
+            taOptions.keyMappings = []; // allow customizable keyMappings for specialized key boards or languages
+            taOptions.toolbar = [
+                ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'quote'],
+                ['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
+                ['insertImage', 'insertLink', 'wordcount']
+            ];
+        
+            return taOptions; // whatever you return will be the taOptions
+        }]);
+ }]);       
 
 let isAuth = (authenticate) => new Promise((resolve, reject) => {
   if (authenticate.isAuthenticated()) {
@@ -12,6 +29,7 @@ let isAuth = (authenticate) => new Promise((resolve, reject) => {
   }
 });
 
+
 Newave.config(["$routeProvider",
 	function($routeProvider) {
 		$routeProvider.
@@ -19,33 +37,33 @@ Newave.config(["$routeProvider",
         templateUrl: "components/newave.Tmpl.html",
         controller: "NewaveCtrl"
       }).
-      when("/applicantLogin", {
+      when("/applicantLogin/", {
 				templateUrl: "components/applicant/partials/applicantLogin.Tmpl.html",
 				controller: "ApplicantLoginCtrl"
 			}).
-      when("/applicantSignUp", {
+      when("/applicantSignUp/", {
         templateUrl: "components/applicant/partials/applicantSignUp.Tmpl.html",
         controller: "ApplicantLoginCtrl"
       }).
-      when("/employerLogin", {
+      when("/employerLogin/", {
         templateUrl: "components/employer/partials/employerLogin.Tmpl.html",
         controller: "EmployerLoginCtrl"
       }).
-      when("/employerSignUp", {
+      when("/employerSignUp/", {
         templateUrl: "components/employer/partials/employerSignUp.Tmpl.html",
         controller: "EmployerLoginCtrl"
       }).
-      when("/employer", {
+      when("/employer/", {
         templateUrl: "components/employer/partials/employerMain.Tmpl.html",
         controller: "EmployerMainCtrl",
         resolve: { isAuth }
       }).
-      when("/newPost", {
+      when("/newPost/", {
         templateUrl: "components/employer/partials/employerPost.Tmpl.html",
         controller: "EmployerPostCtrl",
         resolve: { isAuth }
       }).
-       when("/employer", {
+       when("/employer/", {
         templateUrl: "components/employer/partials/managePost.Tmpl.html",
         controller: "ManagePostCtrl",
         resolve: { isAuth }
@@ -65,22 +83,22 @@ Newave.config(["$routeProvider",
         controller: "ManageApplicantCtrl",
         resolve: { isAuth }
       }).      
-      when("/manageProfile", {
+      when("/manageProfile/", {
         templateUrl: "components/employer/partials/manageProfile.Tmpl.html",
         controller: "ManageProfileCtrl",
         resolve: { isAuth }
       }).
-      when("/manageApplicantProfile", {
+      when("/manageApplicantProfile/", {
         templateUrl: "components/applicant/partials/manageApplicantProfile.Tmpl.html",
         controller: "ManageApplicantProfileCtrl",
         resolve: { isAuth }
       }).
-      when("/applicant", {
+      when("/applicant/", {
         templateUrl: "components/applicant/partials/applicantMain.Tmpl.html",
         controller: "ApplicantMainCtrl",
         resolve: { isAuth }
       }).
-      when("/appliedJobs", {
+      when("/appliedJobs/", {
         templateUrl: "components/applicant/partials/manageAppliedJobs.Tmpl.html",
         controller: "ManageAppliedJobsCtrl",
         resolve: { isAuth }

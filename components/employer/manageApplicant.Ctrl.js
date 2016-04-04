@@ -10,50 +10,63 @@ Newave.controller('ManageApplicantCtrl', [
 	'authenticate',
 	'jobFactory',
 	'$sce',
+	"$route",
 
-	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory, $sce) {
+	function($scope, $routeParams, $http, $q, $location, authenticate, jobFactory, $sce, $route) {
 
-		var ref = new Firebase("https://frontend-capstone.firebaseio.com/applicantProfiles");
+		let ref = new Firebase(`https://frontend-capstone.firebaseio.com/jobApplicants`)
+
+		let applicantObj =  {
+			applicantId: "",
+			audio: ""
+		}
 
 		let userApplicantArray = [];
-		let employerJobListing = [];	
+		let currentJobPost = [];	
 		let applicantIdArray = [];
 
-		$scope.showNew = true;
-		// $scope.showPotenital = false;
-		// $scope.showNeutral = false;
-		// $scope.showRemoved = false;
+		$scope.showAll = true;
 
 		$scope.jobApplicants = [];
-
 		$scope.newApplicants = [];
 		$scope.potentialArr = [];
 		$scope.neutralArr = [];
 		$scope.removedArr = [];
 
 		// SWITCH VIEWS
-		$scope.New = () => {
+		$scope.ViewAll = () => {
+			$scope.showAll = true;
+			$scope.showNew = false;
+			$scope.showPotenital = false;
+			$scope.showNeutral = false;
+			$scope.showRemoved = false;
+		}
+		$scope.ViewNew = () => {
+			$scope.showAll = false
 			$scope.showNew = true;
 			$scope.showPotenital = false;
 			$scope.showNeutral = false;
 			$scope.showRemoved = false;
 		}
 
-		$scope.Potenital = () => {
+		$scope.ViewPotenital = () => {
+			$scope.showAll = false
 			$scope.showNew = false;
 			$scope.showPotenital = true;
 			$scope.showNeutral = false;
 			$scope.showRemoved = false;
 		}
 
-		$scope.Neutral = () => {
+		$scope.ViewNeutral = () => {
+			$scope.showAll = false
 			$scope.showNew = false;
 			$scope.showPotenital = false;
 			$scope.showNeutral = true;
 			$scope.showRemoved = false;
 		}
 
-		$scope.Removed = () => {
+		$scope.ViewRemoved = () => {
+			$scope.showAll = false
 			$scope.showNew = false;
 			$scope.showPotenital = false;
 			$scope.showNeutral = false;
@@ -61,50 +74,96 @@ Newave.controller('ManageApplicantCtrl', [
 		}
 
 		$scope.sort = () => {
-			for (let i = 0; i < $scope.jobApplicants.length; i++) {
-				if ($scope.jobApplicants[i].potential === true) {
-					$scope.potentialArr.push($scope.jobApplicants[i]);
-					console.log("potential", $scope.potentialArr);
-				}
-				else if ($scope.jobApplicants[i].neutral == true) {
-					console.log("neutral");
-					$scope.neutralArr.push($scope.jobApplicants[i])
-				}
-				else if ($scope.jobApplicants[i].removed == true) {
-					console.log("removed");
-					$scope.removedArr.push($scope.jobApplicants[i])
-				}
-				else {
-					$scope.newApplicants.push($scope.jobApplicants[i])
-					console.log("newApplicants");
+			for (var j = 0; j < $scope.jobApplicants.length; j++) {
+				for (let i = 0; i < currentJobPost.length; i++) {
+					// console.log("currentJobPost[i]", currentJobPost[i].applicantId);
+					console.log("$scope.jobApplicants", $scope.jobApplicants[j]);
+					if (currentJobPost[i].potential === true && currentJobPost[i].applicantId === $scope.jobApplicants[j].uid) {
+						console.log("potential", $scope.potentialArr);
+						console.log("currentJobPost[i].potential", currentJobPost[i].potential);
+						console.log("$scope.jobApplicants[j]",$scope.jobApplicants[j]);
+						$scope.potentialArr.push($scope.jobApplicants[j]);
+					}
+					else if (currentJobPost[i].neutral == true && currentJobPost[i].applicantId === $scope.jobApplicants[j].uid) {
+						console.log("neutral",  $scope.neutralArr);
+						$scope.neutralArr.push($scope.jobApplicants[j])
+					}
+					else if (currentJobPost[i].removed == true && currentJobPost[i].applicantId === $scope.jobApplicants[j].uid) {
+						console.log("removed", $scope.removedArr);
+						$scope.removedArr.push($scope.jobApplicants[j])
+					}
+					else if (currentJobPost[i].potential == false && currentJobPost[i].neutral == false && currentJobPost[i].removed == false && currentJobPost[i].applicantId === $scope.jobApplicants[j].uid) {
+						$scope.newApplicants.push($scope.jobApplicants[j])
+						console.log("newApplicants", $scope.newApplicants);
+					}
 				}
 			}
 		}
 
 		// ADDS/UPDATES STATUS OF APPLIANT TO FB OBJECT
-		$scope.potential = (id) => {
-			var userRef = ref.child(id)
+		$scope.potential = (jobListingKey, applicantUid) => {
+			let userRef = ref.child(jobListingKey)
 			userRef.update({
 				potential: true,
 				neutral: false,
 				removed: false
 			})
+			$scope.newApplicants = [];
+			$scope.potentialArr = [];
+			$scope.neutralArr = [];
+			$scope.removedArr = [];
+			for (var i = 0; i < currentJobPost.length; i++) {
+				if (applicantUid === currentJobPost[i].applicantId) {
+					currentJobPost[i].potential = true;
+					currentJobPost[i].neutral = false;
+					currentJobPost[i].removed = false;
+				}
+			}
+			$scope.sort();
 		}
-		$scope.neutral = (id) => {
-			var userRef = ref.child(id)
+		$scope.neutral = (jobListingKey, applicantUid) => {
+			console.log("jobListingKey", jobListingKey);
+			let userRef = ref.child(jobListingKey)
 			userRef.update({
 				potential: false,
 				neutral: true,
 				removed: false
 			})
+			$scope.newApplicants = [];
+			$scope.potentialArr = [];
+			$scope.neutralArr = [];
+			$scope.removedArr = [];
+			for (var i = 0; i < currentJobPost.length; i++) {
+				if (applicantUid = currentJobPost[i].applicantId) {
+					currentJobPost[i].potential = false;
+					currentJobPost[i].neutral = true;
+					currentJobPost[i].removed = false;
+				}
+			}
+			$scope.sort();
+			console.log("applicant", applicantUid);
 		}
-		$scope.remove = (id) => {
-			var userRef = ref.child(id)
+		$scope.remove = (jobListingKey, applicantUid) => {
+			let userRef = ref.child(jobListingKey)
 			userRef.update({
 				potential: false,
 				neutral: false,
 				removed: true
 			})
+			console.log("applicantUid", applicantUid);
+			$scope.newApplicants = [];
+			$scope.potentialArr = [];
+			$scope.neutralArr = [];
+			$scope.removedArr = [];
+			for (var i = 0; i < currentJobPost.length; i++) {
+				if (applicantUid = currentJobPost[i].applicantId) {
+					currentJobPost[i].potential = false;
+					currentJobPost[i].neutral = false;
+					currentJobPost[i].removed = true;
+				}
+			}
+			$scope.sort();
+			console.log("applicant", applicantUid);
 		}
 
 		// GETS ALL APPLICANTS
@@ -113,7 +172,7 @@ Newave.controller('ManageApplicantCtrl', [
 				$http.get(`https://frontend-capstone.firebaseio.com/applicantProfiles.json`)
 					.success(
 						userApplicantData => {
-						console.log("userApplicantData",userApplicantData);
+						// console.log("userApplicantData",userApplicantData);
 						for (let key in userApplicantData) {
 							userApplicantData[key].key = key;
 							userApplicantArray.push(userApplicantData[key]);
@@ -122,27 +181,22 @@ Newave.controller('ManageApplicantCtrl', [
 						resolve(userApplicantData);
 
 					 	// COMPARES APPLIED APPLICANTS ID TO USER PROFILE
-						for (var i = 0; i < applicantIdArray.length; i++) {
-							for (var j = 0; j < userApplicantArray.length; j++) {
+						for (let i = 0; i < applicantIdArray.length; i++) {
+							for (let j = 0; j < userApplicantArray.length; j++) {
 								if (applicantIdArray[i].applicantId === userApplicantArray[j].uid) {
 									userApplicantArray[j].audio = applicantIdArray[i].audio;
+									userApplicantArray[j].jobListingKey = applicantIdArray[i].jobListingKey;
 									$scope.jobApplicants.push(userApplicantArray[j]);
 								}
 							}
 						}
-						console.log("$scope.jobApplicants", $scope.jobApplicants[0].audio);
-						// $scope.sort();
+						console.log("$scope.jobApplicants", $scope.jobApplicants);
+						$scope.sort();
 					},
 					error => reject(error)	
 				)
 			)	
 		}
-
-			
-	let applicantObj =  {
-		applicantId: "",
-		audio: ""
-	}
 				
 		// GETS APPLICANT ID BASED ON CLICKED JOB
 		$scope.viewJobApplicant = () => {
@@ -150,36 +204,28 @@ Newave.controller('ManageApplicantCtrl', [
 		 		$http.get(`https://frontend-capstone.firebaseio.com/jobApplicants.json?orderBy="jobId"&equalTo="${$routeParams.postID}"`)
 		 		.success(
 		 			jobApplicantData => {
+
 		 				// PUTS JOBLISTING OBJECTS INTO AN ARRAY
 		 				for (let key in jobApplicantData) {
-							employerJobListing.push(jobApplicantData[key]);
+		 					jobApplicantData[key].jobListingKey = key
+							currentJobPost.push(jobApplicantData[key]);
 						}
-						console.log("employerJobListing", employerJobListing);
-
+						console.log("currentJobPost", currentJobPost);
 
 						// SORTS THROUGH ARRAY TO GET APPLICANT ID ASSOCIATED WITH JOB POSTINGS
-						for (var i = 0; i < employerJobListing.length; i++) {
+						for (let i = 0; i < currentJobPost.length; i++) {
+							applicantObj = {};
 
-							// console.log("employerJobListing[i]", employerJobListing[i]);
-
-							// console.log("employerJobListing[i].audio", employerJobListing[i].audio);
-
-
-							// let currentAudio = employerJobListing[i].audio;
-							// console.log("currentAudio", currentAudio);
-
-							let audio = window.atob(employerJobListing[i].audio);
-							
+							//decodes audio blob and allows it to be trusted
+							let audio = window.atob(currentJobPost[i].audio);
 							applicantObj.audio = $sce.trustAsResourceUrl(audio);
 
-							applicantObj.applicantId = employerJobListing[i].applicantId;
-
+							applicantObj.applicantId = currentJobPost[i].applicantId;
+							applicantObj.jobListingKey = currentJobPost[i].jobListingKey;
 							applicantIdArray.push(applicantObj);
 						}	
-							console.log("applicantIdArray", applicantIdArray);
+						console.log("applicantIdArray", applicantIdArray);
 						$scope.getApplicant();	
-						// console.log("applicantIdArray", applicantIdArray);
-						// console.log("employerJobListing", employerJobListing);
 		 				resolve(jobApplicantData);
 		 			},
 		 			error => reject(error)
@@ -187,4 +233,5 @@ Newave.controller('ManageApplicantCtrl', [
 		 	)
 		}
 		$scope.viewJobApplicant();	
-}])
+	}
+])
