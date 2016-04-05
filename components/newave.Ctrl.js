@@ -4,19 +4,9 @@ Newave.controller('NewaveCtrl', [
 	"$scope",	
 	"jobFactory",
 	"Upload",
-	"glassdoor",
 
-	function($scope, jobFactory, upload, glassdoor){
+	function($scope, jobFactory, upload){
 		$scope.allJobs = [];
-
-	$scope.glassdoorButton = () => {
-		console.log("click");
-		glassdoor.info()
-		.then(
-			glassdoorData => {
-				console.log("glassdoorData", glassdoorData);
-			})
-	}	
 
 		jobFactory.searchAllJobPostings()
 		.then(

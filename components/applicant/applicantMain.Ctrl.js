@@ -14,6 +14,7 @@ Newave.controller('ApplicantMainCtrl', [
 		
 		$scope.allJobs = [];
 		let newAudio = "";
+		let myDate = new Date();
 
 		// GETS ALL JOBS
 		jobFactory.searchAllJobPostings()
@@ -43,8 +44,10 @@ Newave.controller('ApplicantMainCtrl', [
 		applicantId: "",
 		potential: "",
 		neutral: "",
-		removed:""
+		removed:"",
+		dateApplied: myDate.toLocaleString()
 	};
+
 
 	// APPLY FOR JOB
 	$scope.applicantApply = (postId) => {

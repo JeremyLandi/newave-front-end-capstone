@@ -10,6 +10,11 @@ Newave.factory("jobFactory", [
 
   let getJobs = {};
 
+  getJobs.logoApiConverter = (company) => {
+    let convertedCompany = company.toLowerCase().replace(/ /g,'');
+    return convertedCompany;
+  }
+
   getJobs.searchEmployerJobPostings = () => {
     let currentUser = authenticate.getCurrentUser();
     return $q((resolve, reject) =>

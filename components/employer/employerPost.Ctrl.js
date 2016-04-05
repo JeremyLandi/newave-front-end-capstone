@@ -6,8 +6,9 @@ Newave.controller('EmployerPostCtrl', [
 	'$q',
 	'$location',
 	'authenticate',
+	'jobFactory',
 
-	function($scope, $http, $q, $location, authenticate) {
+	function($scope, $http, $q, $location, authenticate,jobFactory) {
 		
 		let firebaseRef = new Firebase('https://frontend-capstone.firebaseio.com/');
 
@@ -20,10 +21,13 @@ Newave.controller('EmployerPostCtrl', [
 			questionTwo: "",
 			employerUid: "",		
 			applicantUid: "",
-			datePosted: ""			
+			datePosted: "",
+			updatedCompany: ""
 		};
 
+
 		$scope.postJob = () => {
+			let currentUpdatedCompany = jobFactory.logoApiConverter($scope.newJobPosting.companyName) 
 	    let myDate = new Date();
 			let newJob = {
 				companyName: $scope.newJobPosting.companyName,
@@ -33,7 +37,8 @@ Newave.controller('EmployerPostCtrl', [
 				questionTwo: $scope.newJobPosting.questionTwo,
 				description: $scope.newJobPosting.description,
 				employerUid: firebaseRef.getAuth().uid,
-				datePosted: myDate.toLocaleString()
+				datePosted: myDate.toLocaleString(),
+				updatedCompany: currentUpdatedCompany
 			};
 
 			$http.post(`https://frontend-capstone.firebaseio.com/jobs/.json`, 

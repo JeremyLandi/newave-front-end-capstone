@@ -4,8 +4,9 @@ Newave.controller("ApplicantLoginCtrl", [
 	"$scope",
 	"authenticate",
   "$location",
+  "Upload",
 
-	function($scope, authenticate, $location) {
+	function($scope, authenticate, $location, upload) {
 
 		$scope.displayLogin = true;
 		$scope.displayLogout = false;
@@ -22,8 +23,19 @@ Newave.controller("ApplicantLoginCtrl", [
 			education: "",
 			school: "",
 			concentration: "",
-			schoolLocation: ""
-		};
+			schoolLocation: "",
+			image: ""
+		}
+
+		$scope.uploadPic = (info) => {
+			upload.base64DataUrl(info)
+	      .then(
+	      	(resp) => {
+	      		console.log("resp", resp);
+			      $scope.user.image =  resp;
+	      	}
+      	);
+		}
 
 		$scope.register = function(user) {
 			const email = user.email;

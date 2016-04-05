@@ -37,11 +37,11 @@
       <uib-alert close="closeAlert()" ng-if="alert" 
       dismiss-on-timeout="3000" type="success">Your application and interview have been sent.</uib-alert>
       <div ng-repeat="job in allJobs | filter:job" class="row">
-        <div class="col-md-1"><img src="https://avatars3.githubusercontent.com/u/2388224?v=3&s=200" class="media-object"></div>
+        <div class="col-md-1"><img ng-src="//logo.clearbit.com/{{job.updatedCompany}}.com" class="media-object"></div>
         <div class="col-md-11">
           <div class="row">
             <div class="col-md-12">              
-               <button ng-click="showDescription = !showDescription; createAudioSection()" class="label label-info pull-right"><span>Details</span></button>
+               <button ng-click="showDescription = !showDescription; createAudioSection()" class="btn btn-info pull-right"><span>Details</span></button>
               <span><strong>{{job.jobTitle}}</strong></span>
               <br>
               <p>{{job.companyName}}</p>
@@ -49,7 +49,7 @@
               <div ng-if="showDescription">
                 <p ng-bind-html="job.description"><strong>Description:</strong> {{job.description}}</p>
                 <br>
-                <button ng-show="job.$$hashKey" ng-click="job.$$hashKey = !job.$$hashKey" class="label label-success"><span>Apply</span></button>
+                <button ng-show="job.$$hashKey" ng-click="job.$$hashKey = !job.$$hashKey" class="btn btn-success"><span>Apply</span></button>
                 <br>
                 <div class="check-element sample-show-hide" ng-show="!job.$$hashKey">
                   <p>In order to apply for this job you must answer a series of questions in a recorded interview. Please start recording when you're ready to begin. <strong>BE AWARE</strong> you only get one chance at this recording.</p> 
@@ -62,16 +62,16 @@
                     <section class="main-controls">
                       <div id="buttons">
                         <div ng-hide="record">
-                         <button class="label label-primary" ng-click="startRecord(); record = !record">Start Recording</button>
+                         <button class="btn btn-primary" ng-click="startRecord(); record = !record">Start Recording</button>
                         </div> 
                         <div ng-show="record">
-                          <button ng-show="stopRecord" class="label label-danger" ng-click="stopRecord(); stopRecord = !stopRecord">Stop Recording</button>
+                          <button ng-show="stopRecord" class="btn btn-danger" ng-click="stopRecord(); stopRecord = !stopRecord">Stop Recording</button>
                         </div>  
                       </div>
                     </section>
                   </div>                   
                   <div ng-show="application" ng-hide="stopRecord">  
-                    <button ng-show="!application" ng-click="applicantApply(job.id); createAudioSection(); application = !application" class="label label-success"><span>Apply</span></button>
+                    <button ng-show="!application" ng-click="applicantApply(job.id); createAudioSection(); application = !application" class="btn btn-success"><span>Apply</span></button>
                   </div>  
                   <div ng-show="application">
                     <p>Great job on riding a Newave of success! Your application and interview have been sent to {{job.companyName}}. Thank you.</p>

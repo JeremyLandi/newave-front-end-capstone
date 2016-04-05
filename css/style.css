@@ -1,3 +1,6 @@
+/**********
+GENRAL CSS
+**********/
 body {
   padding: 0;
   margin: 0; 
@@ -12,19 +15,6 @@ body {
 a:hover {
   text-decoration: none;
 }
-.applicantImg {
-  float: left;
-  height: 100px;
-}
-.viewApplicants {
-  font-size: 1em;
-}
-li {
-  list-style-type: none;
-}
-.label {
-  font-size: 1em;
-}
 img {
   max-height: 400px;
   width: 100%;
@@ -32,7 +22,17 @@ img {
 }
 p {
   margin: 5px;
-  /*font-size: 1.3em;*/
+  /*font-size: 1em;*/
+}
+h3 {
+  text-align: center;
+  line-height: 300%;
+}
+ul {
+  margin: 75px auto 0;
+}
+li {
+  list-style-type: none;
 }
 nav {
   background-color: rgba( 135, 206, 250, .7);
@@ -47,12 +47,28 @@ nav ul li {
   margin: -5px; 
   border-radius: 10px;
 }
+
+
+/**********
+GENRAL CLASSES
+**********/
+.label {
+  font-size: 1em;
+  padding: 4px;
+}
+.applicantImg {
+  float: left;
+  height: 100px;
+}
+.viewApplicants {
+  font-size: 1em;
+}
 .logo {
   width: 150px;
   float: left;
 }
-ul {
-  margin: 75px auto 0;
+.panel-order .row .col-md-1 img {
+
 }
 
 
@@ -86,8 +102,10 @@ MAIN SECTION
 }
 
 .panel-order .row .col-md-1 img {
-    width: 50px;
-    max-height: 50px;
+    /*width: 50px;
+    max-height: 50px;*/
+    width: 75px;
+    height: 90px;
 }
 
 .panel-order .row .row {
@@ -183,13 +201,11 @@ LOGGIN
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
-h3 {
-  text-align: center;
-  line-height: 300%;
-}
 
-/*BUTTON*/
 
+/***********************
+  FILTER BUTTONS
+************************/
 .red {
   background-color: white;
   padding: 13px;
@@ -229,14 +245,13 @@ h3 {
 button:focus {outline:0;}
 
 
-.label {
-  padding: 4px;
-}
 
+/***********************
+  GLASSDOOR 
+************************/
 .glassdoor {
   float: right;
 }
-
 .glassdoor img {
   width: 100px;
 }
@@ -245,10 +260,10 @@ button:focus {outline:0;}
 /***********************
   BUTTONS
 ************************/
-/*.btn-info {
-    box-shadow: 0 3px 0 0 #007299;
+.btn-default {
+    box-shadow: 0 3px 0 0 silver;
 }
-.btn-info:active, .btn-info.active {
+.btn-default:active, .btn-default.active {
     background: #33a6cc;
     box-shadow: none;
     margin-bottom: -3px;
@@ -259,6 +274,16 @@ button:focus {outline:0;}
     box-shadow: 0 3px 0 0 #007299;
 }
 .btn-primary:active, .btn-primary.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+
+.btn-info {
+    box-shadow: 0 3px 0 0 #007299;
+}
+.btn-info:active, .btn-info.active {
     background: #33a6cc;
     box-shadow: none;
     margin-bottom: -3px;
@@ -294,7 +319,3 @@ button:focus {outline:0;}
     margin-bottom: -3px;
     margin-top: 3px;
 }
-
-
-*/
-

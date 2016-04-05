@@ -47,16 +47,18 @@
               <br>
               <span>{{job.location}}</span>
               <br>
+              <span>{{job.companyName}}</span>
+              <br>
               <div ng-show="details">
                 <p ng-bind-html="job.description"><strong>Description:</strong> {{job.description}}</p>
               </div>
               <a href="/#/manageApplicant/{{job.id}}" ng-click="viewJobApplicant()">
-                <button class="viewApplicants label label-primary pull-right">View Applicants</button>
+                <button class="viewApplicants btn btn-primary pull-right">View Applicants</button>
               </a>
               <br>
-              <button ng-click="details = !details" class="label label-info">Details</button>
+              <button ng-click="details = !details" class="btn btn-info">Details</button>
               <a href="/#/editPost/{{job.id}}">
-                <button class="label label-warning">Edit Details</button>
+                <button class="btn btn-warning">Edit Details</button>
               </a> 
               <button class="label label-danger"
                 mwl-confirm

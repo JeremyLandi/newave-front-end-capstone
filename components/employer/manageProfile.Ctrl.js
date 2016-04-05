@@ -20,8 +20,11 @@ Newave.controller('ManageProfileCtrl', [
 		password: "",
 		name: "",
 		description: "",
-		location: ""
+		location: "",
+		updatedCompany: ""
 	}
+
+
 
 	// GETS EMPLOYER DATA BASED ON LOGIN
 	profileFactory.getEmployerProfile()
@@ -30,6 +33,9 @@ Newave.controller('ManageProfileCtrl', [
 			console.log("employerData", employerData);
 			for (let key in employerData) {
 				employerData[key].id = key;
+				console.log("employerData[key].name", employerData[key].name);
+			employerData[key].updatedCompany = jobFactory.logoApiConverter(employerData[key].name)
+
 				$scope.profiles.push(employerData[key]);
 			}			
 			$scope.employerID = $scope.profiles[0].key;

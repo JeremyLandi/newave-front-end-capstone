@@ -38,7 +38,6 @@
     </ul>
  </div>  
 </nav>
-<button ng-click="glassdoorButton()">Glassdoor</button>
 <div class="container" style="padding-top: 30px;">
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
@@ -46,14 +45,14 @@
     </div>
     <div class="panel-body">
       <div ng-repeat="job in allJobs | filter:job" class="row">
-        <div class="col-md-1"><img src="https://avatars3.githubusercontent.com/u/2388224?v=3&s=200" class="media-object"></div>
+        <div class="col-md-1"><img ng-src="//logo.clearbit.com/{{job.updatedCompany}}.com" class="media-object"></div>
         <div class="col-md-11">
           <div class="row">
             <div class="col-md-12">              
               <span><strong>{{job.jobTitle}}</strong></span>
-              <!-- <span class="label label-info pull-right">Add to Fav</span>  -->
+              <!-- <span class="btn btn-info pull-right">Add to Fav</span>  -->
               <br>
-              <button class="label label-info pull-right" ng-click="showDescription = !showDescription"><span>Details</span></button>
+              <button class="btn btn-info pull-right" ng-click="showDescription = !showDescription"><span>Details</span></button>
               <span>{{job.companyName}}</span>
               <br>
               <span>{{job.location}}</span>
@@ -61,7 +60,7 @@
               <div ng-if="showDescription">
                 <div ng-bind-html="job.description">{{job.description}}</div>
                 <br>
-                <a href="/#/applicantLogin"><button class="label label-danger"><span>Apply</span></button></a>
+                <a href="/#/applicantLogin"><button class="btn btn-danger"><span>Apply</span></button></a>
               </div>
             </div>
             <div class="col-md-12">
