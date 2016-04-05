@@ -1,14 +1,23 @@
 <div class="container" style="padding-top: 60px;">
   <h1 class="page-header">Update Profile</h1>
-  <div class="row">
+  <div ng-repeat="profile in profiles track by $index" class="row">
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a photo...</h6>
-        <input type="file" class="text-center center-block well well-sm">
+        <img ng-src="{{profile.image}}" alt="">
+
+        <canvas id="canvas" width="5" height="5"></canvas>
+        <fieldset class="ng-binding">
+          <input type="file" ngf-select="" ng-model="picFile" name="file" ngf-accept="'image/*'" required="">
+          <i ng-show="myForm.file.$error.required">*required</i>
+          <br>
+          <button ng-click="showAvatar = true; uploadPic(picFile)">Submit</button>
+          <span class="progress" ng-show="picFile.progress >= 0">
+              <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'" class="ng-binding"></div>
+          </span>
+          <span ng-show="picFile.result">Upload Successful</span>
+        </fieldset>
       </div>
-     
     </div>
     <!-- edit form column -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
@@ -17,7 +26,7 @@
         <i class="fa fa-coffee"></i>
         Fields marked with an astrix* are required.
       </div>
-      <form ng-repeat="profile in profiles track by $index"class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form">
         <h3>Personal info</h3>
         <div ng-hide="showPersonal">
           <div class="form-group">

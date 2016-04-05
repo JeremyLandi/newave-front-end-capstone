@@ -35,11 +35,11 @@
     </div>
     <div class="panel-body">
       <div ng-repeat="job in jobs | filter:job" class="row">
-        <div class="col-md-1"><img src="https://avatars3.githubusercontent.com/u/2388224?v=3&s=200" class="media-object"></div>
+        <div class="col-md-1"><img ng-src="//logo.clearbit.com/{{job.updatedCompany}}.com" class="media-object"></div>
         <div class="col-md-11">
           <div class="row">
             <div class="col-md-12">              
-               <button ng-click="showDescription = !showDescription" class="label label-info pull-right"><span>Details</span></button>
+               <button ng-click="showDescription = !showDescription" class="btn btn-info pull-right"><span>Details</span></button>
               <span><strong>{{job.jobTitle}}</strong></span>
               <br>
               <p>{{job.companyName}}</p>

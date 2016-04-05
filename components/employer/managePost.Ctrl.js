@@ -16,12 +16,6 @@ Newave.controller('ManagePostCtrl', [
 		$scope.jobs = [];
 		$scope.companyName = "";
 
-		$scope.$on("$stateChangeSuccess", function(event, toState) {
-			console.log(event);
-			console.log(toState);
-			// $route.reload();
-		})
-
 		$scope.search = () => {
 			jobFactory.searchEmployerJobPostings()
 			.then(

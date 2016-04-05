@@ -24,7 +24,8 @@ Newave.controller('ManageApplicantProfileCtrl', [
 		currentJobLocation: "",
 		school: "",
 		concentration: "",
-		schoolLocation: ""
+		schoolLocation: "",
+		image: ""
 	}
 
 	// GETS EMPLOYER DATA BASED ON LOGIN

@@ -23,7 +23,8 @@ Newave.controller('EditPostCtrl', [
 			questionOne: "",
 			questionTwo: "",
 			employerUid: "",		
-			datePosted: ""		
+			datePosted: "",
+			updatedCompany: ""		
 		};
 
 		jobFactory.searchJobPostingsForEmpPost($routeParams.postID)
@@ -43,20 +44,23 @@ Newave.controller('EditPostCtrl', [
 			$scope.editJobPosting.questionTwo = $scope.jobs[0].questionTwo
 			$scope.editJobPosting.employerUid = $scope.jobs[0].employerUid
 			$scope.editJobPosting.datePosted = $scope.jobs[0].datePosted
+			$scope.editJobPosting.updatedCompany = jobFactory.logoApiConverter($scope.jobs[0].companyName)
+
 
 			postJobFactory.updateJob($routeParams.postID, $scope.editJobPosting)
-			$location.url('/managePost/');
-			// $scope.something();
+			$location.url('/managePost/:postID');
+			$scope.reloadPage();
 		}
 
-		// $scope.something = () => {
-		// 	$scope.jobs = [];
-		// 	jobFactory.searchJobPostingsForEmpPost($routeParams.postID)
-		// .then(
-		// 	jobData => {
-		// 		$scope.jobs.push(jobData)
-		// 		console.log("jobs", $scope.jobs);
-		// 	}
-		// )}
+		$scope.reloadPage = () => {
+			$scope.jobs = [];
+			jobFactory.searchJobPostingsForEmpPost($routeParams.postID)
+		.then(
+			jobData => {
+				$scope.jobs.push(jobData)
+				console.log("jobs", $scope.jobs);
+				$route.reload();
+			}
+		)}
 }])
 			

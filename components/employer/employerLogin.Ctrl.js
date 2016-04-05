@@ -18,8 +18,20 @@ Newave.controller("EmployerLoginCtrl", [
 			name: "",
 			description: "",
 			location: "",
-			isEmployer: true
+			isEmployer: true,
+			image: ""
 		};
+
+
+		$scope.uploadPic = (info) => {
+			upload.base64DataUrl(info)
+	      .then(
+	      	(resp) => {
+	      		console.log("resp", resp);
+			      $scope.employer.image =  resp;
+	      	}
+      	);
+		}
 
 		$scope.register = function(employer) {
 			const email = employer.email;

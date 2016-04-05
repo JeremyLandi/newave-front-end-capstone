@@ -1,12 +1,10 @@
 <div class="container" style="padding-top: 60px;">
   <h1 class="page-header">Edit Business Profile</h1>
-  <div class="row">
+  <div ng-repeat="profile in profiles track by $index" class="row">
     <!-- LEFT COLUMN -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="http://www.clker.com/cliparts/a/a/4/b/12344034822077289736buggi_build.svg.hi.png" alt="avatar">
-        <h6>Upload a Company photo...</h6>
-        <input type="file" class="text-center center-block well well-sm">
+        <img ng-src="//logo.clearbit.com/{{profile.updatedCompany}}.com" class="media-object">
       </div>
     </div>
     <!-- EDIT FORM COLUMN -->
@@ -16,7 +14,7 @@
         <i class="fa fa-coffee"></i>
         Fields marked with an astrix* are required.
       </div>
-      <form ng-repeat="profile in profiles track by $index" class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form">
         <div ng-hide="showAdmin">
           <h3>Admin info</h3>
           <div class="form-group">

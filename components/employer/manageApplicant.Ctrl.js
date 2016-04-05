@@ -80,8 +80,6 @@ Newave.controller('ManageApplicantCtrl', [
 					console.log("$scope.jobApplicants", $scope.jobApplicants[j]);
 					if (currentJobPost[i].potential === true && currentJobPost[i].applicantId === $scope.jobApplicants[j].uid) {
 						console.log("potential", $scope.potentialArr);
-						console.log("currentJobPost[i].potential", currentJobPost[i].potential);
-						console.log("$scope.jobApplicants[j]",$scope.jobApplicants[j]);
 						$scope.potentialArr.push($scope.jobApplicants[j]);
 					}
 					else if (currentJobPost[i].neutral == true && currentJobPost[i].applicantId === $scope.jobApplicants[j].uid) {
@@ -186,6 +184,7 @@ Newave.controller('ManageApplicantCtrl', [
 								if (applicantIdArray[i].applicantId === userApplicantArray[j].uid) {
 									userApplicantArray[j].audio = applicantIdArray[i].audio;
 									userApplicantArray[j].jobListingKey = applicantIdArray[i].jobListingKey;
+									userApplicantArray[j].dateApplied = applicantIdArray[i].dateApplied;
 									$scope.jobApplicants.push(userApplicantArray[j]);
 								}
 							}
@@ -215,11 +214,12 @@ Newave.controller('ManageApplicantCtrl', [
 						// SORTS THROUGH ARRAY TO GET APPLICANT ID ASSOCIATED WITH JOB POSTINGS
 						for (let i = 0; i < currentJobPost.length; i++) {
 							applicantObj = {};
-
+							console.log("currentJobPost", currentJobPost[i]);
 							//decodes audio blob and allows it to be trusted
 							let audio = window.atob(currentJobPost[i].audio);
 							applicantObj.audio = $sce.trustAsResourceUrl(audio);
 
+							applicantObj.dateApplied = currentJobPost[i].dateApplied;
 							applicantObj.applicantId = currentJobPost[i].applicantId;
 							applicantObj.jobListingKey = currentJobPost[i].jobListingKey;
 							applicantIdArray.push(applicantObj);
