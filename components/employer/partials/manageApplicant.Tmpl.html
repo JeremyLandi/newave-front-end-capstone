@@ -23,7 +23,7 @@
   <div>
     <a href="/#/newPost">Post Job</a>
     <a href="/#/manageProfile">| Edit Profile</a>      
-    <a href="/#/managePost/:postID">| Manage Posts</a>      
+    <a href="/#/employer/">| Manage Posts</a>      
   </div>
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
@@ -67,164 +67,177 @@
                 <source ng-src="{{applicant.audio}}" type="audio/ogg">
               </audio>          
               </div>
-            </div>
-            <div class="col-md-12">
-               Applied on: {{applicant.dateApplied}}  
-            </div>
-          </div>
-        </div>
-      </div>  
-    </div>
-
-      <!-- NEW APPLIANTS -->
-      <div class="row" ng-if="showNew" ng-repeat="applicant in newApplicants | filter:applicant track by $index">
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-12">              
-              <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
-              <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
-              <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
-              <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
-              <p>{{applicant.currentEmpl}}</p>
-              <span>
-                <div class="colors pull-right">
-                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
-                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
-                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
-                </div>
-              </span>
-             <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
-              <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
-              <div ng-if="showDetails">
-                <h5>Education</h5>
-                <p>{{applicant.school}}</p>
-                <p>{{applicant.education}}</p>
-                <p>{{applicant.concentration}}</p>
-                <p>{{applicant.schoolLocation}}</p>
-              <audio controls>
-                <source ng-src="{{applicant.audio}}" type="audio/ogg">
-              </audio>          
+              <div class="col-md-12">
+                 Applied on: {{applicant.dateApplied}}  
               </div>
-            </div>
-            <div class="col-md-12">
-               Applied on: {{applicant.dateApplied}}  
-            </div>
+            </div>  
           </div>
         </div>
       </div>  
+    </div>  
 
-          <!-- POTENTIALS -->
-      <div class="row" ng-if="showPotenital" ng-repeat="applicant in potentialArr | filter:applicant track by $index">
-        <div class="col-md-12">    
-          <div class="row">
-            <div class="col-md-12">              
-              <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
-              <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
-              <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
-              <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
-              <p>{{applicant.currentEmpl}}</p>
-              <span>
-                <div class="colors pull-right">
-                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
-                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
-                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
-                </div>
-              </span>
-             <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
-              <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
-              <div ng-if="showDetails">
-                <h5>Education</h5>
-                <p>{{applicant.school}}</p>
-                <p>{{applicant.education}}</p>
-                <p>{{applicant.concentration}}</p>
-                <p>{{applicant.schoolLocation}}</p>
+    <!-- NEW APPLIANTS -->
+    <div class="panel-body">
+      <div class="row" ng-if="showNew" ng-repeat="applicant in newApplicants | filter:applicant track by $index">
+        <div class="col-md-1"><img src="{{applicant.image}}" class="media-object"></div>
+          <div class="col-md-11">
+            <div class="row">
+              <div class="col-md-12">              
+                <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
+                <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
+                <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
+                <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
+                <p>{{applicant.currentEmpl}}</p>
+                <span>
+                  <div class="colors pull-right">
+                    <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                    <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                    <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
+                  </div>
+                </span>
+                <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
+                <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
+                <div ng-if="showDetails">
+                  <h5>Education</h5>
+                  <p>{{applicant.school}}</p>
+                  <p>{{applicant.education}}</p>
+                  <p>{{applicant.concentration}}</p>
+                  <p>{{applicant.schoolLocation}}</p>
                 <audio controls>
                   <source ng-src="{{applicant.audio}}" type="audio/ogg">
-                </audio>  
+                </audio>          
+                </div>
+                <div class="col-md-12">
+                   Applied on: {{applicant.dateApplied}}  
+                </div>
               </div>
-            </div>
-            <div class="col-md-12">
-               Applied on: {{applicant.dateApplied}}  
             </div>
           </div>
         </div>  
       </div>
 
-      <!-- NEUTRALS -->
-      <div class="row" ng-if="showNeutral" ng-repeat="applicant in neutralArr | filter:applicant track by $index">
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-12">              
-              <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
-              <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
-              <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
-              <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
-              <p>{{applicant.currentEmpl}}</p>
-              <span>
-                <div class="colors pull-right">
-                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
-                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
-                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
+      <!-- POTENTIALS -->
+      <div class="panel-body">
+        <div class="row" ng-if="showPotenital" ng-repeat="applicant in potentialArr | filter:applicant track by $index">
+          <div class="col-md-1"><img src="{{applicant.image}}" class="media-object"></div>
+          <div class="col-md-11">   
+            <div class="row">
+              <div class="col-md-12">              
+                <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
+                <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
+                <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
+                <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
+                <p>{{applicant.currentEmpl}}</p>
+                <span>
+                  <div class="colors pull-right">
+                    <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                    <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                    <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
+                  </div>
+                </span>
+                <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
+                <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
+                <div ng-if="showDetails">
+                  <h5>Education</h5>
+                  <p>{{applicant.school}}</p>
+                  <p>{{applicant.education}}</p>
+                  <p>{{applicant.concentration}}</p>
+                  <p>{{applicant.schoolLocation}}</p>
+                  <audio controls>
+                    <source ng-src="{{applicant.audio}}" type="audio/ogg">
+                  </audio>  
                 </div>
-              </span>
-             <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
-              <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
-              <div ng-if="showDetails">
-                <h5>Education</h5>
-                <p>{{applicant.school}}</p>
-                <p>{{applicant.education}}</p>
-                <p>{{applicant.concentration}}</p>
-                <p>{{applicant.schoolLocation}}</p>
-                <audio controls>
-                  <source ng-src="{{applicant.audio}}" type="audio/ogg">
-                </audio>  
+                <div class="col-md-12">
+                   Applied on: {{applicant.dateApplied}}  
+                </div>                
               </div>
-            </div>
-            <div class="col-md-12">
-               Applied on: {{applicant.dateApplied}}  
+            </div>  
+          </div>  
+        </div>
+      </div>
+
+      <!-- NEUTRALS -->
+      <div class="panel-body">
+        <div class="row" ng-if="showNeutral" ng-repeat="applicant in neutralArr | filter:applicant track by $index">
+          <div class="col-md-1"><img src="{{applicant.image}}" class="media-object"></div>
+            <div class="col-md-11"> 
+            <div class="row">
+              <div class="col-md-12">              
+                <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
+                <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
+                <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
+                <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
+                <p>{{applicant.currentEmpl}}</p>
+                <span>
+                  <div class="colors pull-right">
+                    <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                    <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                    <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
+                  </div>
+                </span>
+                <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
+                <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
+                <div ng-if="showDetails">
+                  <h5>Education</h5>
+                  <p>{{applicant.school}}</p>
+                  <p>{{applicant.education}}</p>
+                  <p>{{applicant.concentration}}</p>
+                  <p>{{applicant.schoolLocation}}</p>
+                  <audio controls>
+                    <source ng-src="{{applicant.audio}}" type="audio/ogg">
+                  </audio>  
+                </div>
+                <div class="col-md-12">
+                   Applied on: {{applicant.dateApplied}}  
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>  
       
       <!-- REMOVED -->
-      <div class="row" ng-if="showRemoved" ng-repeat="applicant in removedArr | filter:applicant track by $index">
-        <div class="col-md-12">  
-          <div class="row">
-            <div class="col-md-12">              
-              <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
-              <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
-              <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
-              <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
-              <p>{{applicant.currentEmpl}}</p>
-              <span>
-                <div class="colors pull-right">
-                  <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
-                  <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
-                  <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
+      <div class="panel-body">
+        <div class="row" ng-if="showRemoved" ng-repeat="applicant in removedArr | filter:applicant track by $index">
+          <div class="col-md-12">  
+            <div class="col-md-1"><img src="{{applicant.image}}" class="media-object"></div>
+            <div class="col-md-11"> 
+              <div class="row">
+              <div class="col-md-12">              
+                <!-- <div class="col-md-1"><img src="http://www.ledstudio.in/wp-content/uploads/2015/03/person.jpg" class="media-object applicantImg"></div> -->
+                <p>Applicant Name: <strong>{{applicant.firstName}} {{applicant.lastName}}</strong></p>
+                <button ng-click="showDetails = !showDetails" class="btn btn-info pull-right">Details</button>
+                <p>Current Job Title: <strong>{{applicant.jobTitle}}</strong></p>
+                <p>{{applicant.currentEmpl}}</p>
+                <span>
+                  <div class="colors pull-right">
+                    <button ng-click="potential(applicant.jobListingKey, applicant.uid)" class="green"></button>
+                    <button ng-click="neutral(applicant.jobListingKey, applicant.uid)" class="yellow"></button>
+                    <button ng-click="remove(applicant.jobListingKey, applicant.uid)" class="red"></button>
+                  </div>
+                </span>
+                <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
+                <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
+                <div ng-if="showDetails">
+                  <h5>Education</h5>
+                  <p>{{applicant.school}}</p>
+                  <p>{{applicant.education}}</p>
+                  <p>{{applicant.concentration}}</p>
+                  <p>{{applicant.schoolLocation}}</p>
+                  <audio controls>
+                    <source ng-src="{{applicant.audio}}" type="audio/ogg">
+                  </audio>    
                 </div>
-              </span>
-             <a href="tel:{{applicant.number}}"><p>{{applicant.number}}</p></a>
-              <a href="mailto:{{applicant.email}}"><p>{{applicant.email}}</p></a>
-              <div ng-if="showDetails">
-                <h5>Education</h5>
-                <p>{{applicant.school}}</p>
-                <p>{{applicant.education}}</p>
-                <p>{{applicant.concentration}}</p>
-                <p>{{applicant.schoolLocation}}</p>
-                <audio controls>
-                  <source ng-src="{{applicant.audio}}" type="audio/ogg">
-                </audio>    
+                <div class="col-md-12">
+                  Applied on: {{applicant.dateApplied}} 
+                </div>
               </div>
             </div>
-            <div class="col-md-12">
-              Applied on: {{applicant.dateApplied}} 
-            </div>
           </div>
-          <!-- END OF APPLICANT SECTIONS -->
         </div>
       </div>
     </div>
+    <!-- END OF APPLICANT SECTIONS -->
     <div class="panel-footer">
       <ul class="pagination">
         <li class="active"><a href="#">&laquo;</a></li>

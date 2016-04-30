@@ -3,9 +3,7 @@
 Newave.factory('authenticate', function($q, $http) {
 	
 	let firebaseRef = new Firebase('https://frontend-capstone.firebaseio.com/');
-	
 	let currentUser = null;
-
 	let Authenticate = {};
 
 	Authenticate.isAuthenticated = () => {

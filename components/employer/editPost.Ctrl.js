@@ -31,7 +31,6 @@ Newave.controller('EditPostCtrl', [
 		.then(
 			jobData => {
 				$scope.jobs.push(jobData)
-				console.log("jobs", $scope.jobs);
 			}
 		)
 
@@ -48,7 +47,7 @@ Newave.controller('EditPostCtrl', [
 
 
 			postJobFactory.updateJob($routeParams.postID, $scope.editJobPosting)
-			$location.url('/managePost/:postID');
+			$location.url('/employer/');
 			$scope.reloadPage();
 		}
 
@@ -58,7 +57,6 @@ Newave.controller('EditPostCtrl', [
 		.then(
 			jobData => {
 				$scope.jobs.push(jobData)
-				console.log("jobs", $scope.jobs);
 				$route.reload();
 			}
 		)}
