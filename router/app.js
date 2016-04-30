@@ -3,7 +3,7 @@
 let Newave = angular.module("NewaveApp", ["ngRoute", "firebase", "ngFileUpload", "textAngular", "ngAnimate", "ui.bootstrap", "mwl.confirm"]);
 
 Newave.config(['$provide', function($provide){
-        // this demonstrates how to register a new tool and add it to the default toolbar
+        // WYSIWYG editor section
         $provide.decorator('taOptions', ['$delegate', function(taOptions){
             // $delegate is the taOptions we are decorating
             // here we override the default toolbars and classes specified in taOptions.
@@ -53,11 +53,6 @@ Newave.config(["$routeProvider",
         templateUrl: "components/employer/partials/employerSignUp.Tmpl.html",
         controller: "EmployerLoginCtrl"
       }).
-      when("/employer/", {
-        templateUrl: "components/employer/partials/employerMain.Tmpl.html",
-        controller: "EmployerMainCtrl",
-        resolve: { isAuth }
-      }).
       when("/newPost/", {
         templateUrl: "components/employer/partials/employerPost.Tmpl.html",
         controller: "EmployerPostCtrl",
@@ -67,12 +62,7 @@ Newave.config(["$routeProvider",
         templateUrl: "components/employer/partials/managePost.Tmpl.html",
         controller: "ManagePostCtrl",
         resolve: { isAuth }
-      }).
-      when("/managePost/:postID", {
-        templateUrl: "components/employer/partials/managePost.Tmpl.html",
-        controller: "ManagePostCtrl",
-        resolve: { isAuth }
-      }).      
+      }).     
       when("/editPost/:postID", {
         templateUrl: "components/employer/partials/editPost.Tmpl.html",
         controller: "EditPostCtrl",

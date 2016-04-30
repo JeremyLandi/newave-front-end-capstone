@@ -25,7 +25,6 @@ Newave.controller('EmployerPostCtrl', [
 			updatedCompany: ""
 		};
 
-
 		$scope.postJob = () => {
 			let currentUpdatedCompany = jobFactory.logoApiConverter($scope.newJobPosting.companyName) 
 	    let myDate = new Date();
@@ -46,7 +45,7 @@ Newave.controller('EmployerPostCtrl', [
 			.success(
         job => {
         	console.log("SUCCESS", job);
-        	$location.url('/employer')
+        	$location.url('/employer/')
         },
         error => {console.log("error");}
 			)

@@ -30,7 +30,7 @@ Newave.factory('profileFactory', [
 				.success(
 					newEmployerData => {
 						resolve(newEmployerData);
-						$location.path('/managePost/{{job.id}}')
+						$location.path('/employer/')
 						console.log("success", newEmployerData);
 					},
 					error => reject(error)
@@ -38,12 +38,11 @@ Newave.factory('profileFactory', [
 			})
 		}
 
-		getProfile.getApplicantProfile = () => {
-			let currentUser = authenticate.getCurrentUser();
+		getProfile.getAllApplicantProfile = () => {
 			return $q((resolve, reject) =>
-				$http.get(`https://frontend-capstone.firebaseio.com/applicantProfiles.json?orderBy="uid"&equalTo="${currentUser.uid}"`)
-				.success(
-					applicantData => {
+				$http.get(`https://frontend-capstone.firebaseio.com/applicantProfiles.json`)
+					.success(
+						applicantData => {
 						resolve(applicantData);
 						console.log("success", applicantData);
 					},
@@ -53,7 +52,6 @@ Newave.factory('profileFactory', [
 		}
 
 		getProfile.updateApplicantProfile = (profile) => {
-			console.log("profile", profile);
 			return $q((resolve, reject) => {
 				$http.put(`https://frontend-capstone.firebaseio.com/applicantProfiles/${profile.id}.json`, JSON.stringify(profile))
 				.success(

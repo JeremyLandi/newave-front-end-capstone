@@ -29,7 +29,22 @@ Newave.factory("jobFactory", [
     )
   }
 
-   getJobs.searchAllAppliedJobs = () => {
+  //returns specific jobs
+  getJobs.searchAppliedJobs = () => {
+    return $q((resolve, reject) =>
+      $http.get(`https://frontend-capstone.firebaseio.com/jobApplicants.json?orderBy="jobId"&equalTo="${$routeParams.postID}"`)
+        .success(
+          jobAppliedData => {
+            resolve(jobAppliedData);
+            console.log("SUCCESS", jobAppliedData);
+          },
+          error => reject(error)
+        )
+    )
+  }
+
+  //returns all jobs
+  getJobs.searchAllAppliedJobs = () => {
     return $q((resolve, reject) =>
       $http.get(`https://frontend-capstone.firebaseio.com/jobApplicants.json`)
         .success(

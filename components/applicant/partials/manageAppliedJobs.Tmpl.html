@@ -46,7 +46,7 @@
               <p>{{job.location}}</p>
               <div ng-if="showDescription">
                 <p ng-bind-html="job.description"><strong>Description:</strong> {{job.description}}</p>
-                <button class="label label-danger"
+                <button class="btn btn-danger"
                 mwl-confirm
                 message="Are you sure you want to remove this application for a <strong>{{job.jobTitle}}</strong> for <strong>{{job.companyName}}</strong>?"
                 placement="right"

@@ -5,12 +5,7 @@ body {
   padding: 0;
   margin: 0; 
   color: #111;
-}
-.hide {
-  display: none;
-}
-.clear {
-  clear: both;
+  background-color: rgba(225,225,225,.9);
 }
 a:hover {
   text-decoration: none;
@@ -22,7 +17,6 @@ img {
 }
 p {
   margin: 5px;
-  /*font-size: 1em;*/
 }
 h3 {
   text-align: center;
@@ -36,9 +30,10 @@ li {
 }
 nav {
   background-color: rgba( 135, 206, 250, .7);
+  background-image: url(http://media.newjobs.com/homepage/images/hero-img/bg_purple_5.jpg);
+  background-position: -100px cover;
   padding: 25px; 
   box-shadow: 0px 0px 10px gray;
-
 }
 nav ul li {
   display: inline;
@@ -47,6 +42,8 @@ nav ul li {
   margin: -5px; 
   border-radius: 10px;
 }
+/*REMOVES BLUE BOX AROUND BUTTONS*/
+button:focus {outline:0;}
 
 
 /**********
@@ -67,10 +64,12 @@ GENRAL CLASSES
   width: 150px;
   float: left;
 }
-.panel-order .row .col-md-1 img {
-
+.hide {
+  display: none;
 }
-
+.clear {
+  clear: both;
+}
 
 
 /**********
@@ -89,58 +88,49 @@ ANIMATION
 MAIN SECTION
 **********/
 .panel-order .row {
-    border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background-color: rgba(116, 65, 100, .3);
+  box-shadow: 0px 0px 10px 2px rgba(220,220,220,.9);
+  border: 2px outset silver;
+  margin-top: 5px;
 }
-
 .panel-order .row:last-child {
     border: 0px;
 }
-
 .panel-order .row .col-md-1 {
     text-align: center;
     padding-top: 15px;
 }
-
 .panel-order .row .col-md-1 img {
-    /*width: 50px;
-    max-height: 50px;*/
-    width: 75px;
-    height: 90px;
+    max-width: 75px;
+    max-height: 90px;
 }
-
 .panel-order .row .row {
     border-bottom: 0;
 }
-
 .panel-order .row .col-md-11 {
     border-left: 1px solid #ccc;
 }
-
 .panel-order .row .row .col-md-12 {
     padding-top: 7px;
     padding-bottom: 7px;
 }
-
 .panel-order .row .row .col-md-12:last-child {
     font-size: 11px;
     color: #555;
-    background: #efefef;
+    background: rgba(225,225,225,.9);
 }
-
 .panel-order .btn-group {
     margin: 0px;
     padding: 0px;
 }
-
 .panel-order .panel-body {
     padding-top: 0px;
     padding-bottom: 0px;
 }
-
 .panel-order .panel-deading {
     margin-bottom: 0;
 }
-
 
 
 /**********
@@ -149,7 +139,7 @@ LOGGIN
 .signIn {
   padding-bottom: 50px;
   width: 500px;
-  background-color: rgba(155,155,155,.3);
+  background-color: rgba(116, 65, 100, .3);
   color: #444;
   margin: 5% auto;
   border-radius: 10px;
@@ -217,7 +207,6 @@ LOGGIN
   background-color: red;
   box-shadow: inset 0px 0px 6px white;
 }
-
 .yellow {
   background-color: white;
   padding: 13px;
@@ -229,7 +218,6 @@ LOGGIN
   background-color: #ec971f;
   box-shadow: inset 0px 0px 6px white;
 }
-
 .green {
   background-color: white;
   padding: 13px;
@@ -241,9 +229,6 @@ LOGGIN
   background-color: green;
   box-shadow: inset 0px 0px 6px white;
 }
-/*REMOVES BLUE BOX AROUNF BUTTONS*/
-button:focus {outline:0;}
-
 
 
 /***********************
@@ -269,7 +254,6 @@ button:focus {outline:0;}
     margin-bottom: -3px;
     margin-top: 3px;
 }
-
 .btn-primary {
     box-shadow: 0 3px 0 0 #007299;
 }
@@ -279,7 +263,6 @@ button:focus {outline:0;}
     margin-bottom: -3px;
     margin-top: 3px;
 }
-
 .btn-info {
     box-shadow: 0 3px 0 0 #007299;
 }
@@ -289,7 +272,6 @@ button:focus {outline:0;}
     margin-bottom: -3px;
     margin-top: 3px;
 }
-
 .btn-warning {
     box-shadow: 0 3px 0 0 #d88a1c;
 }
@@ -299,7 +281,6 @@ button:focus {outline:0;}
     margin-bottom: -3px;
     margin-top: 3px;
 }
-
 .btn-danger {
     box-shadow: 0 3px 0 0 #b72826;
 }
@@ -309,7 +290,6 @@ button:focus {outline:0;}
     margin-bottom: -3px;
     margin-top: 3px;
 }
-
 .btn-success {
     box-shadow: 0 3px 0 0 #3f913f;
 }
