@@ -1,7 +1,7 @@
 <div class="container" style="padding-top: 60px;">
   <h1 class="page-header">Update Profile</h1>
+  <!-- left column -->
   <div ng-repeat="profile in profiles track by $index" class="row">
-    <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
         <img ng-src="{{profile.image}}" alt="">
@@ -96,13 +96,16 @@
 	      <div class="form-group">      	
 	        <label class="col-lg-3 control-label">Level of Education</label>
 	        <div class="col-lg-8">
-	         <!--  <div class="ui-select">
-	            <select id="profile_time_zone" class="form-control" ng-model="profile.education" ng-options="education as education.label for education in selectEdu">        
-	            	<option>
-	            		Ordered by: {{profile.education.label}}
-	            	</option>     
-	      			</select>
-	          </div>  -->        
+	          <div class="ui-select">
+              <select class="form-control" ng-model="user.education">  
+                <option value="">---Please select---</option> 
+                <option value="High School">High School</option>
+                <option value="Bachelor Degree">Bachelor Degree</option>
+                <option value="Master Degree">Master Degree</option>
+                <option value="Doctorate Degree">Doctorate Degree</option>
+                <option value="Professional Degree">Professional Degree</option>
+            </select>      
+              </div>          
 	        </div> 	        
 	      </div>
 	      <div class="form-group">
