@@ -49,6 +49,20 @@ Newave.factory('profileFactory', [
 					error => reject(error)
 				)
 			)
+		}	
+
+		getProfile.getApplicantProfile = () => {
+			let currentUser = authenticate.getCurrentUser();
+			return $q((resolve, reject) =>
+				$http.get(`https://frontend-capstone.firebaseio.com/applicantProfiles.json?orderBy="uid"&equalTo="${currentUser.uid}"`)
+					.success(
+						applicantData => {
+						resolve(applicantData);
+						console.log("success", applicantData);
+					},
+					error => reject(error)
+				)
+			)
 		}
 
 		getProfile.updateApplicantProfile = (profile) => {
@@ -67,8 +81,3 @@ Newave.factory('profileFactory', [
 
 	return getProfile;
 }])
-
-
-
-
-

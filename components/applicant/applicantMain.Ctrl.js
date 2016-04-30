@@ -53,7 +53,6 @@ Newave.controller('ApplicantMainCtrl', [
 	$scope.applicantApply = (postId) => {
 		// gets/sets user ID
 		let currentApplicant = authenticate.getCurrentUser();
-		// console.log("currentApplicant.uid", currentApplicant.uid);
 		applicants.applicantId = currentApplicant.uid;
 
 		console.log("postID", postId);
@@ -64,7 +63,6 @@ Newave.controller('ApplicantMainCtrl', [
 		applicants.removed = false;
 
 		$scope.showAlert();
-
 		$http.post(`https://frontend-capstone.firebaseio.com/jobApplicants/.json`, JSON.stringify(applicants))
 	}
 
@@ -113,14 +111,13 @@ Newave.controller('ApplicantMainCtrl', [
 		      var audioURL = window.URL.createObjectURL(blob);
 		      audio.src = audioURL;
 		      console.log("recorder stopped");
-
 		      console.log("newAudio", newAudio);
 		      
+		      //converts blob audio into btoa format
 		      upload.base64DataUrl(blob)
 		      .then(
 		      	(resp) => {
 				      newAudio =  window.btoa(resp);
-		      		// console.log(newAudio);
 		      	}
 		      );
 		    }
@@ -137,8 +134,5 @@ Newave.controller('ApplicantMainCtrl', [
 		} else {
 		   console.log('getUserMedia not supported on your browser!');
 		}
-
 	}
 }])
-
-

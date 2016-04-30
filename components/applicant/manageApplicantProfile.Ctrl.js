@@ -46,4 +46,3 @@ Newave.controller('ManageApplicantProfileCtrl', [
 	}
 
 }])
-

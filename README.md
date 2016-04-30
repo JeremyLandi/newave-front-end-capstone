@@ -29,5 +29,4 @@
 <h3>Features: </h3>
 <li>Multi-user log in (employer and applicant)</li>
 <li>Audio recording and image upload</li>
-<li></li>
-<li></li>
+<li>WYSIWYG Editor</li>

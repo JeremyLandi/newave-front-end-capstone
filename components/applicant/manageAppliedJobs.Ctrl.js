@@ -37,9 +37,7 @@ Newave.controller('ManageAppliedJobsCtrl', [
 					  	jobKeys.push(value.jobId)
 						}
 					})
-					
 					$scope.getResults();
-					console.log("jobKeys",jobKeys);
 				},
 				error => console.log("error")
 			);
@@ -66,14 +64,11 @@ Newave.controller('ManageAppliedJobsCtrl', [
 
 		$scope.removeApplication = (jobID) => {
 			angular.forEach(jobApplicantArr, function(value, key) {
-				console.log("value", value.jobId);
-				console.log("jobID", jobID);
 				if (jobID === value.jobId && currentUser.uid === value.applicantId) {
 					toBeDeleted = value.id;
 				}
 			})
 			$scope.remove(toBeDeleted);		
-			console.log(toBeDeleted);
 		}
 
 		$scope.remove = (toBeDeleted) => $http
