@@ -1,2 +1,2 @@
 .DS_Store
-lib/bower_components/
+#lib/bower_components/
